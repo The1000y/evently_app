@@ -154,16 +154,16 @@ class LoginScreen extends StatelessWidget {
                                     if (value == null || value.isEmpty) {
                                       return 'Enter password';
                                     }
-                                    if (value.length < 6) {
-                                      return 'enther pawwsord moer than 6 characters';
-                                    }
-                                    bool validPasswod = RegExp(
-                                      r'^(?=.*[^a-zA-Z0-9]).+$',
-                                    ).hasMatch(value);
+                                    // if (value.length < 6) {
+                                    //   return 'enther pawwsord moer than 6 characters';
+                                    // }
+                                    // bool validPasswod = RegExp(
+                                    //   r'^(?=.*[^a-zA-Z0-9]).+$',
+                                    // ).hasMatch(value);
 
-                                    if (!validPasswod) {
-                                      return 'should contain at least one Special character';
-                                    }
+                                    // if (!validPasswod) {
+                                    //   return 'should contain at least one Special character';
+                                    // }
                                     return null;
                                   },
                                   obscureText: value,
