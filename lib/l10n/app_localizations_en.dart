@@ -68,4 +68,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get skip_button => 'Skip';
+
+  @override
+  String get welcome_back => 'Welcome Back ✨';
+
+  @override
+  String get language => 'EN';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get favorite => 'Favorite';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get tab_all => 'All';
+
+  @override
+  String get tab_Book => 'Book';
+
+  @override
+  String get tab_Birthday => 'Birthday';
+
+  @override
+  String get tab_Exhibition => 'Exhibition';
+
+  @override
+  String get tab_Meeting => 'Meeting';
+
+  @override
+  String get tab_Sport => 'Sport';
 }

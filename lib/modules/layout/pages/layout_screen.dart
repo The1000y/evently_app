@@ -1,6 +1,7 @@
 import 'package:evently/core/ids/app_ids.dart';
 import 'package:evently/core/provider/app_provider.dart';
 import 'package:evently/core/themes/app_color.dart';
+import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/modules/layout/manager/layout_provider.dart';
 import 'package:evently/modules/layout/pages/favorite_screen.dart';
 import 'package:evently/modules/layout/pages/home_Screen.dart';
@@ -16,6 +17,7 @@ class LayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var local = AppLocalizations.of(context)!;
     List<Widget> MyScreen = [HomeScreen(), FavoriteScreen(), ProfileSceen()];
     var appProvider = context.read<AppProvider>();
     return ChangeNotifierProvider<LayoutProvider>(
@@ -60,17 +62,17 @@ class LayoutScreen extends StatelessWidget {
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Iconsax.home),
-                    label: 'Home',
+                    label: local.home,
                     activeIcon: Icon(Iconsax.home_25),
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Iconsax.heart),
-                    label: 'Favorite',
+                    label: local.favorite,
                     activeIcon: Icon(Iconsax.heart5),
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Iconsax.user),
-                    label: 'Pofile',
+                    label: local.profile,
                     activeIcon: Icon(Icons.person, size: 25),
                   ),
                 ],

@@ -1,6 +1,7 @@
 import 'package:evently/core/constance/app_constance.dart';
 import 'package:evently/core/provider/app_provider.dart';
 import 'package:evently/core/themes/app_color.dart';
+import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/modules/events/services/event_services.dart';
 import 'package:evently/modules/layout/manager/layout_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,8 +16,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var currentUser = FirebaseAuth.instance.currentUser;
     var myTheme = Theme.of(context);
+    var local = AppLocalizations.of(context)!;
     var appProvider = context.read<AppProvider>();
-    List categoriesList = AppConstance.categories;
+    List categoriesList = AppConstance.categories(context);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -33,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Welcome Back ✨',
+                        local.welcome_back,
                         style: myTheme.textTheme.titleLarge,
                       ),
                       Text(
@@ -112,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               SizedBox(width: 10),
                               Text(
-                                'All',
+                                local.tab_all,
                                 style: myTheme.textTheme.titleSmall!.copyWith(
                                   color: provider.tabIndex == 0
                                       ? Colors.white
@@ -125,7 +127,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
 
-                    ...AppConstance.categories.asMap().entries.map((element) {
+                    ...AppConstance.categories(context).asMap().entries.map((
+                      element,
+                    ) {
                       int index = element.key + 1;
                       return Tab(
                         child: Container(
@@ -142,7 +146,9 @@ class HomeScreen extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Icon(
-                                  AppConstance.categories[index - 1].icon,
+                                  AppConstance.categories(
+                                    context,
+                                  )[index - 1].icon,
                                   color: provider.tabIndex == index
                                       ? Colors.white
                                       : myTheme.primaryColor,
@@ -172,7 +178,7 @@ class HomeScreen extends StatelessWidget {
           Consumer<LayoutProvider>(
             builder: (context, provider, child) {
               return StreamBuilder(
-                stream: EventServices.getStreamDate(provider.tabIndex),
+                stream: EventServices.getStreamDate(provider.tabIndex, context),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     var data = snapshot.data?.docs ?? [];
@@ -184,11 +190,10 @@ class HomeScreen extends StatelessWidget {
                         itemCount: data.length,
                         itemBuilder: (context, index) {
                           var item = data[index].data();
-                          var itemCategory = AppConstance.categories.firstWhere(
-                            (element) {
-                              return element.id == item.categoryId;
-                            },
-                          );
+                          var itemCategory = AppConstance.categories(context)
+                              .firstWhere((element) {
+                                return element.id == item.categoryId;
+                              });
                           return Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(24),

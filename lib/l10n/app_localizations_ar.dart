@@ -68,4 +68,37 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get skip_button => 'تخطي';
+
+  @override
+  String get welcome_back => 'مرحبًا بعودتك ✨';
+
+  @override
+  String get language => 'ع';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get favorite => 'المفضلة';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get tab_all => 'الكل';
+
+  @override
+  String get tab_Book => 'الكتب';
+
+  @override
+  String get tab_Birthday => 'أعياد الميلاد';
+
+  @override
+  String get tab_Exhibition => 'المعارض';
+
+  @override
+  String get tab_Meeting => 'الاجتماعات';
+
+  @override
+  String get tab_Sport => 'الرياضة';
 }

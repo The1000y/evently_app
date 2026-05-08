@@ -211,6 +211,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Skip'**
   String get skip_button;
+
+  /// No description provided for @welcome_back.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back ✨'**
+  String get welcome_back;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'EN'**
+  String get language;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @favorite.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite'**
+  String get favorite;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @tab_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get tab_all;
+
+  /// No description provided for @tab_Book.
+  ///
+  /// In en, this message translates to:
+  /// **'Book'**
+  String get tab_Book;
+
+  /// No description provided for @tab_Birthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday'**
+  String get tab_Birthday;
+
+  /// No description provided for @tab_Exhibition.
+  ///
+  /// In en, this message translates to:
+  /// **'Exhibition'**
+  String get tab_Exhibition;
+
+  /// No description provided for @tab_Meeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Meeting'**
+  String get tab_Meeting;
+
+  /// No description provided for @tab_Sport.
+  ///
+  /// In en, this message translates to:
+  /// **'Sport'**
+  String get tab_Sport;
 }
 
 class _AppLocalizationsDelegate

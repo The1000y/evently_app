@@ -29,7 +29,7 @@ class EventProvider extends ChangeNotifier {
   Future<void> onAddEvent(BuildContext context) async {
     Loading.showLoading(context);
     EventModel event = EventModel(
-      categoryId: AppConstance.categories[tabIndex].id,
+      categoryId: AppConstance.categories(context)[tabIndex].id,
       date: selectedDate.toString(),
       description: descriptionController.text,
       id: "",

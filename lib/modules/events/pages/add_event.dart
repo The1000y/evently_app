@@ -16,7 +16,7 @@ class AddEvent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var myTheme = Theme.of(context);
-    List<AppCategory> categoriesList = AppConstance.categories;
+    List<AppCategory> categoriesList = AppConstance.categories(context);
     return ChangeNotifierProvider<EventProvider>(
       create: (context) => EventProvider(),
       child: Scaffold(
@@ -43,9 +43,9 @@ class AddEvent extends StatelessWidget {
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: AssetImage(
-                                  AppConstance
-                                      .categories[provider.tabIndex]
-                                      .image,
+                                  AppConstance.categories(
+                                    context,
+                                  )[provider.tabIndex].image,
                                 ),
                               ),
                               borderRadius: BorderRadius.circular(16),
@@ -76,55 +76,60 @@ class AddEvent extends StatelessWidget {
                                 provider.onChangeTab(value);
                               },
 
-                              tabs: AppConstance.categories.asMap().entries.map(
-                                (element) {
-                                  int index = element.key;
-                                  return Tab(
-                                    child: Container(
-                                      padding: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        color: provider.tabIndex == index
-                                            ? myTheme.primaryColor
-                                            : Colors.white,
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 6,
+                              tabs: AppConstance.categories(context)
+                                  .asMap()
+                                  .entries
+                                  .map((element) {
+                                    int index = element.key;
+                                    return Tab(
+                                      child: Container(
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            16,
+                                          ),
+                                          color: provider.tabIndex == index
+                                              ? myTheme.primaryColor
+                                              : Colors.white,
                                         ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Icon(
-                                              AppConstance
-                                                  .categories[index]
-                                                  .icon,
-                                              color: provider.tabIndex == index
-                                                  ? Colors.white
-                                                  : myTheme.primaryColor,
-                                            ),
-                                            SizedBox(width: 10),
-                                            Text(
-                                              element.value.name,
-                                              style: myTheme
-                                                  .textTheme
-                                                  .titleSmall!
-                                                  .copyWith(
-                                                    color:
-                                                        provider.tabIndex ==
-                                                            index
-                                                        ? Colors.white
-                                                        : myTheme
-                                                              .primaryColorDark,
-                                                  ),
-                                            ),
-                                          ],
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 6,
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(
+                                                AppConstance.categories(
+                                                  context,
+                                                )[index].icon,
+                                                color:
+                                                    provider.tabIndex == index
+                                                    ? Colors.white
+                                                    : myTheme.primaryColor,
+                                              ),
+                                              SizedBox(width: 10),
+                                              Text(
+                                                element.value.name,
+                                                style: myTheme
+                                                    .textTheme
+                                                    .titleSmall!
+                                                    .copyWith(
+                                                      color:
+                                                          provider.tabIndex ==
+                                                              index
+                                                          ? Colors.white
+                                                          : myTheme
+                                                                .primaryColorDark,
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              ).toList(),
+                                    );
+                                  })
+                                  .toList(),
                             ),
                           ),
 

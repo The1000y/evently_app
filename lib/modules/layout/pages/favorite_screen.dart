@@ -41,9 +41,10 @@ class FavoriteScreen extends StatelessWidget {
                       child: ListView.separated(
                         itemBuilder: (context, index) {
                           var item = data[index].data();
-                          var itemCategory = AppConstance.categories.firstWhere(
-                            (element) => element.id == item.categoryId,
-                          );
+                          var itemCategory = AppConstance.categories(context)
+                              .firstWhere(
+                                (element) => element.id == item.categoryId,
+                              );
                           return Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(24),

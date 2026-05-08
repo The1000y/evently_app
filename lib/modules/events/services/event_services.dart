@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently/core/constance/app_constance.dart';
 import 'package:evently/modules/events/model/event_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 
 class EventServices {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -28,25 +29,29 @@ class EventServices {
 
   static Future<List<QueryDocumentSnapshot<EventModel>>> getDate(
     int index,
+    BuildContext context,
   ) async {
     var ref = getRef();
     if (index == 0) {
       var data = await ref.get();
       return data.docs;
     } else {
-      var categoryId = AppConstance.categories[index - 1].id;
+      var categoryId = AppConstance.categories(context)[index - 1].id;
       var date = await ref.where("categoryId", isEqualTo: categoryId).get();
       return date.docs;
     }
   }
 
-  static Stream<QuerySnapshot<EventModel>> getStreamDate(int index) {
+  static Stream<QuerySnapshot<EventModel>> getStreamDate(
+    int index,
+    BuildContext context,
+  ) {
     var ref = getRef();
     if (index == 0) {
       var data = ref.snapshots();
       return data;
     } else {
-      var categoryId = AppConstance.categories[index - 1].id;
+      var categoryId = AppConstance.categories(context)[index - 1].id;
       var date = ref.where("categoryId", isEqualTo: categoryId).snapshots();
       return date;
     }
