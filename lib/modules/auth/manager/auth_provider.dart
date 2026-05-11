@@ -78,7 +78,7 @@ class AuthProvider extends ChangeNotifier {
         password: password,
       );
 
-      if (user != null && user.emailVerified) {
+      if (user != null) {
         CherryToast.success(
           title: Text(
             "Welcom to Evently ${user.displayName}",
@@ -98,13 +98,13 @@ class AuthProvider extends ChangeNotifier {
       } else {
         CherryToast.error(
           title: Text(
-            'Email not verified',
+            'Ckeck your Email or Password',
             style: TextStyle(color: Colors.red),
           ),
           displayCloseButton: false,
           animationType: AnimationType.fromTop,
         ).show(context);
-        user!.sendEmailVerification();
+        // user!.sendEmailVerification();
         errorHappen = true;
         notifyListeners();
         isLoading = false;

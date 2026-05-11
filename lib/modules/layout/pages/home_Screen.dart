@@ -211,27 +211,37 @@ class HomeScreen extends StatelessWidget {
                             width: double.infinity,
                             height: 220,
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              // mainAxisSize: MainAxisSize.min,
                               children: [
-                                Container(
-                                  margin: EdgeInsets.all(8),
-                                  padding: EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1,
-                                      color: AppColor.darkModeDisableColor
-                                          .withValues(alpha: 0.5),
+                                Align(
+                                  alignment: appProvider.language == 'en'
+                                      ? Alignment.centerRight
+                                      : Alignment.centerRight,
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    alignment: Alignment.centerRight,
+                                    margin: EdgeInsets.all(8),
+                                    padding: EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: 1,
+                                        color: AppColor.darkModeDisableColor
+                                            .withValues(alpha: 0.5),
+                                      ),
+                                      color: myTheme.primaryColor.withValues(
+                                        alpha: 0.1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
-                                    color: myTheme.primaryColor.withValues(
-                                      alpha: 0.1,
+                                    child: Center(
+                                      child: Text(
+                                        DateFormat(
+                                          "d MMM",
+                                        ).format(DateTime.parse(item.date)),
+                                        style: myTheme.textTheme.titleSmall,
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Text(
-                                    DateFormat(
-                                      "d MMM",
-                                    ).format(DateTime.parse(item.date)),
-                                    style: myTheme.textTheme.titleSmall,
                                   ),
                                 ),
                                 Spacer(),

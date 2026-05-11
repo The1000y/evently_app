@@ -543,7 +543,19 @@ class RegisterScreen extends StatelessWidget {
                                   : AppColor.lightModeMainColor,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            try {
+                              var user = await provider.getSingInGoogle();
+                              if (user != null && user.user != null) {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  AppIds.layoutScreen,
+                                );
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
