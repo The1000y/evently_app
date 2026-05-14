@@ -80,3 +80,30 @@ class EventServices {
     return data.docs;
   }
 }
+
+// class SrvicesData {
+//   setData() {
+//     FirebaseFirestore firestore = FirebaseFirestore.instance;
+//     var collection = firestore.collection("event");
+//     collection.doc("event_id").set({"name": "event"});
+//   }
+
+//   Future<List<EventModel>> getdData() async {
+//     FirebaseFirestore firestore = FirebaseFirestore.instance;
+//     var data = await firestore.collection("event").get();
+//     var eventList = data.docs.map((doc) {
+//       return EventModel.fromJson(doc.data());
+//     }).toList();
+//     return eventList;
+//   }
+
+//   Future<Map<String, dynamic>> getdDsata() async {
+//     FirebaseFirestore firestore = FirebaseFirestore.instance;
+//     var data = await firestore.collection("event").doc("event_id").get();
+//     // return EventModel.fromJson(data.data());
+//     Map<String, dynamic> mydata = data.data() as Map<String, dynamic>;
+//   mydata["id"] = data.id;
+//   mydata["ref"] = data.reference;
+//     return mydata;
+//   }
+// }
