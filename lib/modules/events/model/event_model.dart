@@ -36,7 +36,7 @@ class EventModel {
 
   factory EventModel.fromJson(dynamic json) {
     List<dynamic>? userFav = json["userfav"];
-    String? userId = FirebaseAuth.instance.currentUser!.uid;
+    String? userId = FirebaseAuth.instance.currentUser?.uid;
 
     return EventModel(
       categoryId: json["categoryId"],

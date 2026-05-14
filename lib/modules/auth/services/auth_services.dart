@@ -53,9 +53,10 @@ class AuthServices {
 
   Future<UserCredential?> signInWithGoogle() async {
     GoogleSignInAccount? _signInAccount = await _googleSignIn.signIn();
+    if (_signInAccount == null) return null;
 
     GoogleSignInAuthentication _authAccount =
-        await _signInAccount!.authentication;
+        await _signInAccount.authentication;
     OAuthCredential _accountCredential = GoogleAuthProvider.credential(
       accessToken: _authAccount.accessToken,
       idToken: _authAccount.idToken,

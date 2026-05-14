@@ -545,13 +545,11 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           onPressed: () async {
                             try {
-                              var user = await provider.getSingInGoogle();
-                              if (user != null && user.user != null) {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  AppIds.layoutScreen,
-                                );
-                              }
+                              await provider.getSingInGoogle(context);
+                              Navigator.pushReplacementNamed(
+                                context,
+                                AppIds.layoutScreen,
+                              );
                             } catch (e) {
                               print(e);
                             }

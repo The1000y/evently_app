@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                         style: myTheme.textTheme.titleLarge,
                       ),
                       Text(
-                        currentUser!.displayName ?? "",
+                        currentUser?.displayName ?? "",
                         style: myTheme.textTheme.bodyLarge,
                       ),
                     ],

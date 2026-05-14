@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 class AuthProvider extends ChangeNotifier {
   AuthServices authServices = AuthServices();
   bool isLoading = false;
+  bool isLoadingGoogle = false;
   bool errorHappen = false;
 
   Future<void> createAccount(
@@ -114,7 +115,7 @@ class AuthProvider extends ChangeNotifier {
       errorHappen = true;
       notifyListeners();
       CherryToast.error(
-        title: Text(e.message ?? "", style: TextStyle(color: Colors.red)),
+        title: Text(e.toString(), style: TextStyle(color: Colors.red)),
         displayCloseButton: false,
         animationType: AnimationType.fromTop,
       ).show(context);
@@ -170,7 +171,38 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  Future<UserCredential?> getSingInGoogle() async {
-    return await authServices.signInWithGoogle();
+  Future<bool> getSingInGoogle(BuildContext context) async {
+    try {
+      isLoadingGoogle = true;
+      notifyListeners();
+      var user = await authServices.signInWithGoogle();
+      if (user == null || user.user == null) {
+        errorHappen = true;
+        notifyListeners();
+        CherryToast.error(
+          title: Text(
+            "Google Sign In Failed",
+            style: TextStyle(color: Colors.red),
+          ),
+          displayCloseButton: false,
+          animationType: AnimationType.fromTop,
+        ).show(context);
+        isLoadingGoogle = false;
+        notifyListeners();
+        return false;
+      }
+      return true;
+    } catch (e) {
+      errorHappen = true;
+      notifyListeners();
+      CherryToast.error(
+        title: Text(e.toString(), style: TextStyle(color: Colors.red)),
+        displayCloseButton: false,
+        animationType: AnimationType.fromTop,
+      ).show(context);
+      isLoadingGoogle = false;
+      notifyListeners();
+      return false;
+    }
   }
 }

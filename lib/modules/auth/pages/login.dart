@@ -2,7 +2,6 @@ import 'package:evently/core/ids/app_ids.dart';
 import 'package:evently/core/provider/app_provider.dart';
 import 'package:evently/core/themes/app_color.dart';
 import 'package:evently/modules/auth/manager/auth_provider.dart';
-import 'package:firebase_auth/firebase_auth.dart' show UserCredential;
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +26,6 @@ class LoginScreen extends StatelessWidget {
         body: SafeArea(
           child: Form(
             key: _formKey,
-
             child: SingleChildScrollView(
               child: Consumer<AuthProvider>(
                 builder: (context, provider, child) {
@@ -245,64 +243,64 @@ class LoginScreen extends StatelessWidget {
                                             email: emailController.text,
                                             password: passwordController.text,
                                           );
-                                          provider.errorHappen
-                                              ? ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-                                                    backgroundColor:
-                                                        appProvider.isDark
-                                                        ? Colors.redAccent
-                                                        : Colors.redAccent,
-                                                    content: Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons
-                                                              .error_outline_outlined,
-                                                          color: Colors.white,
-                                                        ),
-                                                        SizedBox(width: 8),
-                                                        Text(
-                                                          maxLines: 2,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                          // provider.errorHappen
+                                          //     ? ScaffoldMessenger.of(
+                                          //         context,
+                                          //       ).showSnackBar(
+                                          //         SnackBar(
+                                          //           backgroundColor:
+                                          //               appProvider.isDark
+                                          //               ? Colors.redAccent
+                                          //               : Colors.redAccent,
+                                          //           content: Row(
+                                          //             children: [
+                                          //               Icon(
+                                          //                 Icons
+                                          //                     .error_outline_outlined,
+                                          //                 color: Colors.white,
+                                          //               ),
+                                          //               SizedBox(width: 8),
+                                          //               Text(
+                                          //                 maxLines: 2,
+                                          //                 overflow: TextOverflow
+                                          //                     .ellipsis,
 
-                                                          'Invalid input!',
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    duration: Duration(
-                                                      seconds: 1,
-                                                    ),
-                                                  ),
-                                                )
-                                              : ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-                                                    backgroundColor:
-                                                        appProvider.isDark
-                                                        ? AppColor
-                                                              .darkModeMainColor
-                                                        : AppColor
-                                                              .lightModeMainColor,
-                                                    content: Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.check_circle,
-                                                          color: Colors.white,
-                                                        ),
-                                                        SizedBox(width: 8),
-                                                        Text(
-                                                          'Signup successful!',
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    duration: Duration(
-                                                      seconds: 1,
-                                                    ),
-                                                  ),
-                                                );
+                                          //                 'Invalid input!',
+                                          //               ),
+                                          //             ],
+                                          //           ),
+                                          //           duration: Duration(
+                                          //             seconds: 1,
+                                          //           ),
+                                          //         ),
+                                          //       )
+                                          //     : ScaffoldMessenger.of(
+                                          //         context,
+                                          //       ).showSnackBar(
+                                          //         SnackBar(
+                                          //           backgroundColor:
+                                          //               appProvider.isDark
+                                          //               ? AppColor
+                                          //                     .darkModeMainColor
+                                          //               : AppColor
+                                          //                     .lightModeMainColor,
+                                          //           content: Row(
+                                          //             children: [
+                                          //               Icon(
+                                          //                 Icons.check_circle,
+                                          //                 color: Colors.white,
+                                          //               ),
+                                          //               SizedBox(width: 8),
+                                          //               Text(
+                                          //                 'Signup successful!',
+                                          //               ),
+                                          //             ],
+                                          //           ),
+                                          //           duration: Duration(
+                                          //             seconds: 1,
+                                          //           ),
+                                          //         ),
+                                          //       );
                                         }
                                       },
                                 child: Center(
@@ -429,24 +427,34 @@ class LoginScreen extends StatelessWidget {
                                   : AppColor.lightModeMainColor,
                             ),
                           ),
-                          onPressed: () async {
-                            try {
-                              UserCredential? user = await provider
-                                  .getSingInGoogle();
-                              if (user != null && user.user != null) {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  AppIds.layoutScreen,
-                                );
-                              }
-                            } catch (e) {
-                              print(e);
-                            }
-                          },
+                          onPressed: provider.isLoadingGoogle
+                              ? null
+                              : () async {
+                                  bool success = await provider.getSingInGoogle(
+                                    context,
+                                  );
+                                  if (success) {
+                                    Navigator.pushReplacementNamed(
+                                      context,
+                                      AppIds.layoutScreen,
+                                    );
+                                  }
+                                },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset('assets/images/google.png'),
+                              provider.isLoadingGoogle
+                                  ? SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: appProvider.isDark
+                                            ? AppColor.darkModeMainColor
+                                            : AppColor.lightModeMainColor,
+                                      ),
+                                    )
+                                  : Image.asset('assets/images/google.png'),
                               SizedBox(width: 20),
                               Text('Login with Google'),
                             ],
