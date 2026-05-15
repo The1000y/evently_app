@@ -147,31 +147,32 @@ class ForgetScreen extends StatelessWidget {
                                       );
                                     },
                                   );
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      backgroundColor: appProvider.isDark
-                                          ? Colors.redAccent
-                                          : Colors.redAccent,
-                                      content: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.error_outline_outlined,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(width: 8),
-                                          Text(
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-
-                                            'Invalid input!',
-                                          ),
-                                        ],
-                                      ),
-                                      duration: Duration(seconds: 1),
-                                    ),
-                                  );
                                 }
+                                // else {
+                                //   ScaffoldMessenger.of(context).showSnackBar(
+                                //     SnackBar(
+                                //       backgroundColor: appProvider.isDark
+                                //           ? Colors.redAccent
+                                //           : Colors.redAccent,
+                                //       content: Row(
+                                //         children: [
+                                //           Icon(
+                                //             Icons.error_outline_outlined,
+                                //             color: Colors.white,
+                                //           ),
+                                //           SizedBox(width: 8),
+                                //           Text(
+                                //             maxLines: 2,
+                                //             overflow: TextOverflow.ellipsis,
+
+                                //             'Invalid input!',
+                                //           ),
+                                //         ],
+                                //       ),
+                                //       duration: Duration(seconds: 1),
+                                //     ),
+                                //   );
+                                // }
                               },
                         child: Center(child: Text('Reset password')),
                       ),

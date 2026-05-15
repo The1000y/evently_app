@@ -1,6 +1,20 @@
 import 'package:evently/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
+class AppCategory {
+  String id;
+  String name;
+  String image;
+  IconData icon;
+
+  AppCategory({
+    required this.id,
+    required this.image,
+    required this.name,
+    required this.icon,
+  });
+}
+
 class AppConstance {
   static List<AppCategory> categories(BuildContext context) {
     var local = AppLocalizations.of(context)!;
@@ -37,18 +51,4 @@ class AppConstance {
       ),
     ];
   }
-}
-
-class AppCategory {
-  String id;
-  String name;
-  String image;
-  IconData icon;
-
-  AppCategory({
-    required this.id,
-    required this.image,
-    required this.name,
-    required this.icon,
-  });
 }

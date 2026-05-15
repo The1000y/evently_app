@@ -161,7 +161,7 @@ class ProfileSceen extends StatelessWidget {
                 return GestureDetector(
                   onTap: () async {
                     await provider.signOutGoogle();
-                    FirebaseAuth.instance.signOut();
+                    await FirebaseAuth.instance.signOut();
                     Navigator.pushNamedAndRemoveUntil(
                       context,
                       AppIds.loginSceen,

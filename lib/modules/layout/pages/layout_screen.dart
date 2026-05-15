@@ -12,13 +12,17 @@ import 'package:provider/provider.dart';
 
 class LayoutScreen extends StatelessWidget {
   const LayoutScreen({super.key});
-
   final String id = AppIds.layoutScreen;
-
   @override
   Widget build(BuildContext context) {
+    // var provider = context.read<LayoutProvider>();// لو هنده على فانكشن هتتكريت مره واحده بس
+    // var provider2 = Provider.of<LayoutProvider>(context); // لو عاوز الاسكرين تتغير مع كل تغير
     var local = AppLocalizations.of(context)!;
-    List<Widget> MyScreen = [HomeScreen(), FavoriteScreen(), ProfileSceen()];
+    final List<Widget> MyScreen = const [
+      HomeScreen(),
+      FavoriteScreen(),
+      ProfileSceen(),
+    ];
     var appProvider = context.read<AppProvider>();
     return ChangeNotifierProvider<LayoutProvider>(
       create: (context) => LayoutProvider(),

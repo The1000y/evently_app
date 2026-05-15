@@ -321,103 +321,103 @@ class RegisterScreen extends StatelessWidget {
                                             password: passwordController.text,
                                             name: nameController.text,
                                           );
-                                          provider.errorHappen
-                                              ? ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-                                                    backgroundColor:
-                                                        appProvider.isDark
-                                                        ? Colors.redAccent
-                                                        : Colors.redAccent,
-                                                    content: Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons
-                                                              .error_outline_outlined,
-                                                          color: Colors.white,
-                                                        ),
-                                                        SizedBox(width: 8),
-                                                        Text(
-                                                          maxLines: 2,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                          //   provider.errorHappen
+                                          //       ? ScaffoldMessenger.of(
+                                          //           context,
+                                          //         ).showSnackBar(
+                                          //           SnackBar(
+                                          //             backgroundColor:
+                                          //                 appProvider.isDark
+                                          //                 ? Colors.redAccent
+                                          //                 : Colors.redAccent,
+                                          //             content: Row(
+                                          //               children: [
+                                          //                 Icon(
+                                          //                   Icons
+                                          //                       .error_outline_outlined,
+                                          //                   color: Colors.white,
+                                          //                 ),
+                                          //                 SizedBox(width: 8),
+                                          //                 Text(
+                                          //                   maxLines: 2,
+                                          //                   overflow: TextOverflow
+                                          //                       .ellipsis,
 
-                                                          'Invalid input!',
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    duration: Duration(
-                                                      seconds: 1,
-                                                    ),
-                                                  ),
-                                                )
-                                              : ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-                                                    backgroundColor:
-                                                        appProvider.isDark
-                                                        ? AppColor
-                                                              .darkModeMainColor
-                                                        : AppColor
-                                                              .lightModeMainColor,
-                                                    content: Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.check_circle,
-                                                          color: Colors.white,
-                                                        ),
-                                                        SizedBox(width: 8),
-                                                        Text(
-                                                          'Signup successful!',
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    duration: Duration(
-                                                      seconds: 1,
-                                                    ),
-                                                  ),
-                                                );
+                                          //                   'Invalid input!',
+                                          //                 ),
+                                          //               ],
+                                          //             ),
+                                          //             duration: Duration(
+                                          //               seconds: 1,
+                                          //             ),
+                                          //           ),
+                                          //         )
+                                          //       : ScaffoldMessenger.of(
+                                          //           context,
+                                          //         ).showSnackBar(
+                                          //           SnackBar(
+                                          //             backgroundColor:
+                                          //                 appProvider.isDark
+                                          //                 ? AppColor
+                                          //                       .darkModeMainColor
+                                          //                 : AppColor
+                                          //                       .lightModeMainColor,
+                                          //             content: Row(
+                                          //               children: [
+                                          //                 Icon(
+                                          //                   Icons.check_circle,
+                                          //                   color: Colors.white,
+                                          //                 ),
+                                          //                 SizedBox(width: 8),
+                                          //                 Text(
+                                          //                   'Signup successful!',
+                                          //                 ),
+                                          //               ],
+                                          //             ),
+                                          //             duration: Duration(
+                                          //               seconds: 1,
+                                          //             ),
+                                          //           ),
+                                          //         );
 
-                                          Future.delayed(
-                                            Duration(seconds: 2),
-                                            () {
-                                              Navigator.pushReplacementNamed(
-                                                context,
-                                                AppIds.loginSceen,
-                                              ); // بدل '/AppIds.loginSceen' بالصفحة اللي عايزها
-                                            },
-                                          );
-                                        } else {
-                                          ScaffoldMessenger.of(
-                                            context,
-                                          ).showSnackBar(
-                                            SnackBar(
-                                              backgroundColor:
-                                                  appProvider.isDark
-                                                  ? Colors.redAccent
-                                                  : Colors.redAccent,
-                                              content: Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons
-                                                        .error_outline_outlined,
-                                                    color: Colors.white,
-                                                  ),
-                                                  SizedBox(width: 8),
-                                                  Text(
-                                                    maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
+                                          //   Future.delayed(
+                                          //     Duration(seconds: 2),
+                                          //     () {
+                                          //       Navigator.pushReplacementNamed(
+                                          //         context,
+                                          //         AppIds.loginSceen,
+                                          //       ); // بدل '/AppIds.loginSceen' بالصفحة اللي عايزها
+                                          //     },
+                                          //   );
+                                          // } else {
+                                          //   ScaffoldMessenger.of(
+                                          //     context,
+                                          //   ).showSnackBar(
+                                          //     SnackBar(
+                                          //       backgroundColor:
+                                          //           appProvider.isDark
+                                          //           ? Colors.redAccent
+                                          //           : Colors.redAccent,
+                                          //       content: Row(
+                                          //         children: [
+                                          //           Icon(
+                                          //             Icons
+                                          //                 .error_outline_outlined,
+                                          //             color: Colors.white,
+                                          //           ),
+                                          //           SizedBox(width: 8),
+                                          //           Text(
+                                          //             maxLines: 2,
+                                          //             overflow:
+                                          //                 TextOverflow.ellipsis,
 
-                                                    'Invalid input!',
-                                                  ),
-                                                ],
-                                              ),
-                                              duration: Duration(seconds: 1),
-                                            ),
-                                          );
+                                          //             'Invalid input!',
+                                          //           ),
+                                          //         ],
+                                          //       ),
+                                          //       duration: Duration(seconds: 1),
+                                          //     ),
+                                          //   );
                                         }
                                       },
                                 child: Center(
@@ -543,21 +543,34 @@ class RegisterScreen extends StatelessWidget {
                                   : AppColor.lightModeMainColor,
                             ),
                           ),
-                          onPressed: () async {
-                            try {
-                              await provider.getSingInGoogle(context);
-                              Navigator.pushReplacementNamed(
-                                context,
-                                AppIds.layoutScreen,
-                              );
-                            } catch (e) {
-                              print(e);
-                            }
-                          },
+                          onPressed: provider.isLoadingGoogle
+                              ? null
+                              : () async {
+                                  bool success = await provider.getSingInGoogle(
+                                    context,
+                                  );
+                                  if (success) {
+                                    Navigator.pushReplacementNamed(
+                                      context,
+                                      AppIds.layoutScreen,
+                                    );
+                                  }
+                                },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset('assets/images/google.png'),
+                              provider.isLoadingGoogle
+                                  ? SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: appProvider.isDark
+                                            ? AppColor.darkModeMainColor
+                                            : AppColor.lightModeMainColor,
+                                      ),
+                                    )
+                                  : Image.asset('assets/images/google.png'),
                               SizedBox(width: 20),
                               Text('Login with Google'),
                             ],

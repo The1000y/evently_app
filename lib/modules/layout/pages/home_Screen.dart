@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
     var currentUser = FirebaseAuth.instance.currentUser;
     var myTheme = Theme.of(context);
     var local = AppLocalizations.of(context)!;
-    var appProvider = context.read<AppProvider>();
+    var appProvider = context.watch<AppProvider>();
     List categoriesList = AppConstance.categories(context);
 
     return Padding(
@@ -146,15 +146,16 @@ class HomeScreen extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Icon(
-                                  AppConstance.categories(
-                                    context,
-                                  )[index - 1].icon,
+                                  element.value.icon,
                                   color: provider.tabIndex == index
                                       ? Colors.white
                                       : myTheme.primaryColor,
                                 ),
                                 SizedBox(width: 10),
                                 Text(
+                                  // AppConstance.categories(
+                                  //   context,
+                                  // )[index - 1].name,
                                   element.value.name,
                                   style: myTheme.textTheme.titleSmall!.copyWith(
                                     color: provider.tabIndex == index
@@ -167,7 +168,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       );
-                    }).toList(),
+                    }),
                   ],
                 ),
               );
@@ -239,7 +240,13 @@ class HomeScreen extends StatelessWidget {
                                         DateFormat(
                                           "d MMM",
                                         ).format(DateTime.parse(item.date)),
-                                        style: myTheme.textTheme.titleSmall,
+                                        style: myTheme.textTheme.titleSmall!
+                                            .copyWith(
+                                              color: appProvider.isDark
+                                                  ? AppColor.darkModeMainColor
+                                                  : AppColor
+                                                        .darkModeStrokeColor,
+                                            ),
                                       ),
                                     ),
                                   ),
@@ -262,7 +269,13 @@ class HomeScreen extends StatelessWidget {
                                       Expanded(
                                         child: Text(
                                           item.title,
-                                          style: myTheme.textTheme.titleSmall,
+                                          style: myTheme.textTheme.titleSmall!
+                                              .copyWith(
+                                                color: appProvider.isDark
+                                                    ? AppColor.darkModeMainColor
+                                                    : AppColor
+                                                          .darkModeStrokeColor,
+                                              ),
                                         ),
                                       ),
                                       SizedBox(width: 8),
@@ -282,7 +295,13 @@ class HomeScreen extends StatelessWidget {
                                         item.userfav == null
                                             ? "0"
                                             : item.userfav!.length.toString(),
-                                        style: myTheme.textTheme.titleSmall,
+                                        style: myTheme.textTheme.titleSmall!
+                                            .copyWith(
+                                              color: appProvider.isDark
+                                                  ? AppColor.darkModeMainColor
+                                                  : AppColor
+                                                        .darkModeStrokeColor,
+                                            ),
                                       ),
                                     ],
                                   ),
