@@ -35,6 +35,22 @@ class FavoriteScreen extends StatelessWidget {
               return FutureBuilder(
                 future: EventServices.getFavouriteDate(),
                 builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasError) {
+                    Center(child: Text(snapshot.error.toString()));
+                  }
+
+                  if (snapshot.data == null || snapshot.data!.isEmpty) {
+                    return Center(
+                      child: Image.asset(
+                        'assets/images/data_hacking-01.png',
+                        cacheHeight: 400,
+                        cacheWidth: 400,
+                      ),
+                    );
+                  }
                   if (snapshot.hasData) {
                     var data = snapshot.data ?? [];
                     return Expanded(

@@ -181,7 +181,23 @@ class HomeScreen extends StatelessWidget {
               return StreamBuilder(
                 stream: EventServices.getStreamDate(provider.tabIndex, context),
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
+                  if (snapshot.hasError) {
+                    return Text(snapshot.hasError.toString());
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.data!.docs.isEmpty) {
+                    return Center(
+                      child: SizedBox(
+                        child: Image.asset(
+                          'assets/images/data_hacking-01.png',
+                          cacheWidth: 400,
+                          cacheHeight: 400,
+                          scale: 1,
+                        ),
+                      ),
+                    );
+                  } else {
                     var data = snapshot.data?.docs ?? [];
                     return Expanded(
                       child: ListView.separated(
@@ -312,10 +328,6 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                     );
-                  } else if (snapshot.hasError) {
-                    return Text(snapshot.hasError.toString());
-                  } else {
-                    return Center(child: CircularProgressIndicator());
                   }
                 },
               );

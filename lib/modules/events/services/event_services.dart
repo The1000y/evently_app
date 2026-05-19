@@ -7,6 +7,18 @@ import 'package:flutter/widgets.dart';
 class EventServices {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  //  CollectionReference<EventModel> setEventData(EventModel event) {
+  //    return firestore.collection("event").withConverter(
+  //       fromFirestore: (snapshot, options) => EventModel.fromJson(snapshot.data()),
+  //       toFirestore: (value, options) => value.toJson());
+  //     //create rundom id of dicument
+  //     // collection.add(event.toJson());
+
+  //     //create docuemt with generate id y me
+  //     // var document = collection.doc(event.id);
+  //     // document.set(event.toJson());
+  //   }
+
   static CollectionReference<EventModel> getRef() {
     return firestore
         .collection("event")
@@ -58,17 +70,32 @@ class EventServices {
   }
 
   static Future<void> favToggle(EventModel event) async {
-    event.userfav ??= [];
-    if (event.isfav) {
-      event.userfav!.remove(FirebaseAuth.instance.currentUser!.uid);
-      event.isfav = false;
-    } else {
-      event.userfav?.add(FirebaseAuth.instance.currentUser!.uid);
-      event.isfav = true;
-    }
+    // event.userfav ??= [];
+    // if (event.isfav) {
+    //   event.userfav!.remove(FirebaseAuth.instance.currentUser!.uid);
+    //   event.isfav = false;
+    // } else {
+    //   event.userfav?.add(FirebaseAuth.instance.currentUser!.uid);
+    //   event.isfav = true;
+    // }
 
     var ref = getRef();
-    await ref.doc(event.id).update(event.toJson());
+    if (event.isfav) {
+      ref.doc(event.id).update({
+        "userfav": FieldValue.arrayRemove([
+          FirebaseAuth.instance.currentUser!.uid,
+        ]),
+      });
+      ref.doc(event.id).update({"isfav": false});
+    } else {
+      ref.doc(event.id).update({
+        "userfav": FieldValue.arrayUnion([
+          FirebaseAuth.instance.currentUser!.uid,
+        ]),
+      });
+      ref.doc(event.id).update({"isfav": true});
+    }
+    // await ref.doc(event.id).update(event.toJson());
   }
 
   static Future<List<QueryDocumentSnapshot<EventModel>>>
@@ -105,5 +132,66 @@ class EventServices {
 //   mydata["id"] = data.id;
 //   mydata["ref"] = data.reference;
 //     return mydata;
+//   }
+// }
+
+// tooglefav(EventModel event) async {
+//   var uId = FirebaseAuth.instance.currentUser!.uid;
+//   var ref = FirebaseFirestore.instance.collection("event").doc(event.id);
+//   if (event.isfav) {
+//     ref.update({
+//       "userfav": FieldValue.arrayRemove([uId]),
+
+//     });
+//   }else {
+//     ref.update({
+//       "userfav": FieldValue.arrayUnion([uId]),
+//     });
+//   }
+// }
+
+// Future<List> getlistFavEvent() async {
+//   String userId = FirebaseAuth.instance.currentUser!.uid;
+//   var ref = FirebaseFirestore.instance.collection("favorites");
+//   var data = await ref.doc(userId).get();
+//   Map<String, dynamic>? mydata = data.data();
+//   List mylist = mydata!["events"];
+//   return mylist;
+// }
+
+// Future<EventModel> getEvent(String idEvent) async {
+//   var ref = FirebaseFirestore.instance.collection("event").doc(idEvent);
+//   var data = await ref.get();
+//   return EventModel.fromJson(data.data());
+// }
+
+// Future<List<EventModel>> loopfun() async {
+//   var newList = await getlistFavEvent();
+//   List<EventModel> event = [];
+//   for (var element in newList) {
+//     if (event.contains(element)) {}
+//     event.add(await getEvent(element));
+//   }
+//   return event;
+// }
+
+// Future<void> toggle(String eventId) async {
+//   var collection = FirebaseFirestore.instance.collection('favorites');
+//   String userId = FirebaseAuth.instance.currentUser!.uid;
+
+//   // جيب الـ list الأول
+//   var data = await collection.doc(userId).get();
+//   List list = data.data()!['events'] ?? [];
+
+//   if (list.contains(eventId)) {
+//     // موجود → شيله
+//     await collection.doc(userId).update({
+//       'events': FieldValue.arrayRemove([eventId]),
+//     });
+//   } else {
+//     // مش موجود → ضيفه
+//     await collection.doc(userId).update({
+//       'events': FieldValue.arrayUnion([eventId]),
+//     });
 //   }
 // }

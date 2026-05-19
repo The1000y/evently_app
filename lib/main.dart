@@ -26,6 +26,7 @@ void main() async {
   AppProvider provider = AppProvider();
   provider.loadLanguage();
   provider.loadTheme();
+  provider.loadOnBoarding();
   runApp(
     ChangeNotifierProvider<AppProvider>.value(value: provider, child: MyApp()),
   );

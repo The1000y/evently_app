@@ -13,6 +13,13 @@ class AppProvider extends ChangeNotifier {
 
   String language = 'en';
 
+  bool onBoardingDone = false;
+
+  loadOnBoarding() {
+    onBoardingDone = GetHelper.prefs.getBool("onBoarding") ?? false;
+    notifyListeners();
+  }
+
   Future<void> loadLanguage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? saveLanguage = prefs.getString("language");

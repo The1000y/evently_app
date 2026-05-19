@@ -30,63 +30,72 @@ class LoginScreen extends StatelessWidget {
               child: Consumer<AuthProvider>(
                 builder: (context, provider, child) {
                   return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
+                      Stack(
+                        alignment: Alignment.center,
                         children: [
-                          Spacer(),
-
-                          Card(
-                            color: appProvider.isDark
-                                ? AppColor.darkModeInputsColor
-                                : AppColor.lightModeInputsColor,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                              side: BorderSide(
-                                width: 2,
-                                color: appProvider.isDark
-                                    ? AppColor.darkModeMainColor.withValues(
-                                        alpha: 0.3,
-                                      )
-                                    : AppColor.darkModeDisableColor.withValues(
-                                        alpha: 0.3,
-                                      ),
-                              ),
-                            ),
-
-                            child: IconButton(
-                              iconSize: 25,
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  AppIds.onBoardingScreen,
-                                );
-                              },
-                              icon: Center(
-                                child: Icon(
-                                  Icons.arrow_back_ios_new_outlined,
-
-                                  color: appProvider.isDark
-                                      ? AppColor.darkModeMainTextColor
-                                      : AppColor.lightModeMainColor,
+                          Center(
+                            child: Hero(
+                              tag: 'logo',
+                              child: Center(
+                                child: Image.asset(
+                                  'assets/logos/logo Evently.png',
+                                  width: 140,
+                                  color: myTheme.primaryColor,
                                 ),
                               ),
                             ),
                           ),
 
-                          Spacer(flex: 3),
-                          Hero(
-                            tag: 'logo',
-                            child: Center(
-                              child: Image.asset(
-                                'assets/logos/logo Evently.png',
-                                width: 140,
-                                color: myTheme.primaryColor,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: SizedBox(
+                                width: 55,
+                                child: Card(
+                                  color: appProvider.isDark
+                                      ? AppColor.darkModeInputsColor
+                                      : AppColor.lightModeInputsColor,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    side: BorderSide(
+                                      width: 2,
+                                      color: appProvider.isDark
+                                          ? AppColor.darkModeMainColor
+                                                .withValues(alpha: 0.3)
+                                          : AppColor.darkModeDisableColor
+                                                .withValues(alpha: 0.3),
+                                    ),
+                                  ),
+
+                                  child: IconButton(
+                                    iconSize: 25,
+                                    onPressed: () {
+                                      Navigator.pushReplacementNamed(
+                                        context,
+                                        AppIds.onBoardingScreen,
+                                      );
+                                    },
+                                    icon: Center(
+                                      child: Icon(
+                                        Icons.arrow_back_ios_new_outlined,
+
+                                        color: appProvider.isDark
+                                            ? AppColor.darkModeMainTextColor
+                                            : AppColor.lightModeMainColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                          Spacer(flex: 7),
+
+                          // Spacer(flex: 3),
+
+                          // Spacer(flex: 7),
                         ],
                       ),
                       SizedBox(height: 48),

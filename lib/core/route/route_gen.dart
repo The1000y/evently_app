@@ -25,14 +25,6 @@ class RouteGen {
         );
 
       case AppIds.onBoardingScreen:
-        return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 500),
-          pageBuilder: (context, animation, secondaryAnimation) {
-            return OnBoardingScreen();
-          },
-        );
-
-      case AppIds.detailsOnBoardingScreen:
         return onBoarding
             ? PageRouteBuilder(
                 transitionDuration: Duration(milliseconds: 500),
@@ -50,9 +42,17 @@ class RouteGen {
             : PageRouteBuilder(
                 transitionDuration: Duration(milliseconds: 500),
                 pageBuilder: (context, animation, secondaryAnimation) {
-                  return DetailsOnBoarding();
+                  return OnBoardingScreen();
                 },
               );
+
+      case AppIds.detailsOnBoardingScreen:
+        return PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 500),
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return DetailsOnBoarding();
+          },
+        );
 
       case AppIds.loginSceen:
         return PageRouteBuilder(
