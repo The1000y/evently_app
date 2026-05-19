@@ -177,6 +177,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       var user = await authServices.signInWithGoogle();
       if (user == null || user.user == null) {
+        isLoadingGoogle = false;
         errorHappen = true;
         notifyListeners();
         CherryToast.error(
@@ -187,7 +188,7 @@ class AuthProvider extends ChangeNotifier {
           displayCloseButton: false,
           animationType: AnimationType.fromTop,
         ).show(context);
-        isLoadingGoogle = false;
+        // isLoadingGoogle = false;
         notifyListeners();
         return false;
       }

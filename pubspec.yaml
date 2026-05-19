@@ -43,6 +43,7 @@ dependencies:
   cloud_firestore: ^6.1.2
   firebase_core: ^4.4.0
   flutter_dotenv: ^6.0.0 
+  image_picker: ^1.2.2
   google_fonts: ^7.0.2
   smooth_page_indicator: ^2.0.1
   provider: ^6.1.5+1
@@ -50,6 +51,8 @@ dependencies:
     sdk: flutter
   intl: any
   shared_preferences: ^2.5.4
+  path_provider: ^2.1.5   
+  path: ^1.8.0
 
 
 dev_dependencies:

@@ -9,14 +9,14 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get app_name => 'EVENTLY';
+  String get app_name => 'Evently';
 
   @override
-  String get onboarding_title => 'Personalize Your Experience';
+  String get onboarding_title => 'Customize Your Experience';
 
   @override
   String get onboarding_desc =>
-      'Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.';
+      'Choose your preferred language and theme to start with a comfortable experience tailored just for you.';
 
   @override
   String get language_label => 'Language';
@@ -40,31 +40,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get start_button => 'Let\'s Start';
 
   @override
-  String get title_boarding_one => 'Find Events That Inspire You';
+  String get title_boarding_one => 'Discover Events That Inspire You';
 
   @override
-  String get title_boarding_two => 'Effortless Event Planning';
+  String get title_boarding_two => 'Organize Events Easily';
 
   @override
-  String get title_boarding_three => 'Connect with Friends & Share Moments';
+  String get title_boarding_three => 'Connect with Friends and Share Moments';
 
   @override
   String get body_boarding_one =>
-      'Dive into a world of events crafted to fit your unique interests. Whether you\'re into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.';
+      'Enjoy a world of events tailored to your unique interests. Whether you love live music, art workshops, professional meetups, or discovering new experiences, you’ll always find something exciting. Our curated recommendations help you explore, connect, and make the most of every opportunity around you.';
 
   @override
   String get body_boarding_two =>
-      'Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.';
+      'Take the stress out of event planning with our all-in-one tools. From sending invitations and managing RSVPs to scheduling reminders and organizing details, we handle everything for you. Plan effortlessly and focus on what matters most — creating unforgettable experiences for you and your guests.';
 
   @override
   String get body_boarding_three =>
-      'Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.';
+      'Make every event more meaningful by sharing it with others. Our platform lets you invite friends, keep everyone updated, and celebrate moments together. Capture memories and share the excitement with your network to relive the best experiences.';
 
   @override
   String get boarding_button => 'Next';
 
   @override
-  String get boarding_button_finish => 'Get started';
+  String get boarding_button_finish => 'Get Started';
 
   @override
   String get skip_button => 'Skip';
@@ -79,7 +79,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home => 'Home';
 
   @override
-  String get favorite => 'Favorite';
+  String get favorite => 'Favorites';
 
   @override
   String get profile => 'Profile';
@@ -88,7 +88,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tab_all => 'All';
 
   @override
-  String get tab_Book => 'Book';
+  String get tab_Book => 'Books';
 
   @override
   String get tab_Birthday => 'Birthday';
@@ -101,4 +101,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tab_Sport => 'Sport';
+
+  @override
+  String get login_title => 'Login to your account';
+
+  @override
+  String get email_hint => 'Enter your email';
+
+  @override
+  String get password_hint => 'Password';
+
+  @override
+  String get forget_password => 'Forget Password?';
+
+  @override
+  String get login_button => 'Login';
+
+  @override
+  String get dont_have_account => 'Don’t have an account?';
+
+  @override
+  String get signup => 'Signup';
+
+  @override
+  String get or => 'Or';
+
+  @override
+  String get login_with_google => 'Login with Google';
+
+  @override
+  String get create_account_title => 'Create your account';
+
+  @override
+  String get name_hint => 'Enter your name';
+
+  @override
+  String get confirm_password_hint => 'Confirm your password';
+
+  @override
+  String get signup_button => 'Sign Up';
+
+  @override
+  String get already_have_account => 'Already have an account?';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get enter_email_error => 'Enter your email';
+
+  @override
+  String get invalid_email_error => 'Enter a valid email';
+
+  @override
+  String get enter_password_error => 'Enter password';
+
+  @override
+  String get password_short_error => 'Password must be at least 6 characters';
+
+  @override
+  String get confirm_password_error => 'Confirm your password';
+
+  @override
+  String get password_not_match_error => 'Passwords do not match';
+
+  @override
+  String get wrong_password_error => 'Wrong password';
+
+  @override
+  String get email_already_in_use_error => 'Email already in use';
+
+  @override
+  String get user_not_found_error => 'User not found';
+
+  @override
+  String get network_error => 'Check your internet connection';
+
+  @override
+  String get unknown_error => 'Something went wrong';
+
+  @override
+  String get enter_name_error => 'Enter your name';
+
+  @override
+  String get name_short_error => 'Name is too short';
 }

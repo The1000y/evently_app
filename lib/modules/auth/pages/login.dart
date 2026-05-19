@@ -1,6 +1,8 @@
 import 'package:evently/core/ids/app_ids.dart';
 import 'package:evently/core/provider/app_provider.dart';
 import 'package:evently/core/themes/app_color.dart';
+import 'package:evently/l10n/app_localizations.dart';
+// import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/modules/auth/manager/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -19,6 +21,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var myTheme = Theme.of(context);
+    var local = AppLocalizations.of(context)!;
     var appProvider = Provider.of<AppProvider>(context);
     return ChangeNotifierProvider<AuthProvider>(
       create: (context) => AuthProvider(),
@@ -29,448 +32,464 @@ class LoginScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Consumer<AuthProvider>(
                 builder: (context, provider, child) {
-                  return Column(
-                    children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Center(
-                            child: Hero(
-                              tag: 'logo',
-                              child: Center(
-                                child: Image.asset(
-                                  'assets/logos/logo Evently.png',
-                                  width: 140,
-                                  color: myTheme.primaryColor,
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 32),
+                    child: Column(
+                      children: [
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Center(
+                              child: Hero(
+                                tag: 'logo',
+                                child: Center(
+                                  child: Image.asset(
+                                    'assets/logos/logo Evently.png',
+                                    width: 140,
+                                    color: myTheme.primaryColor,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
 
-                          Padding(
-                            padding: const EdgeInsets.only(left: 18),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: SizedBox(
-                                width: 55,
-                                child: Card(
-                                  color: appProvider.isDark
-                                      ? AppColor.darkModeInputsColor
-                                      : AppColor.lightModeInputsColor,
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    side: BorderSide(
-                                      width: 2,
-                                      color: appProvider.isDark
-                                          ? AppColor.darkModeMainColor
-                                                .withValues(alpha: 0.3)
-                                          : AppColor.darkModeDisableColor
-                                                .withValues(alpha: 0.3),
-                                    ),
-                                  ),
+                            appProvider.onBoardingDone
+                                ? SizedBox()
+                                : Padding(
+                                    padding: const EdgeInsets.only(left: 18),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: SizedBox(
+                                        width: 55,
+                                        child: Card(
+                                          color: appProvider.isDark
+                                              ? AppColor.darkModeInputsColor
+                                              : AppColor.lightModeInputsColor,
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              12.0,
+                                            ),
+                                            side: BorderSide(
+                                              width: 2,
+                                              color: appProvider.isDark
+                                                  ? AppColor.darkModeMainColor
+                                                        .withValues(alpha: 0.3)
+                                                  : AppColor
+                                                        .darkModeDisableColor
+                                                        .withValues(alpha: 0.3),
+                                            ),
+                                          ),
 
-                                  child: IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      Navigator.pushReplacementNamed(
-                                        context,
-                                        AppIds.onBoardingScreen,
-                                      );
-                                    },
-                                    icon: Center(
-                                      child: Icon(
-                                        Icons.arrow_back_ios_new_outlined,
+                                          child: IconButton(
+                                            iconSize: 25,
+                                            onPressed: () {
+                                              Navigator.pushReplacementNamed(
+                                                context,
+                                                AppIds.onBoardingScreen,
+                                              );
+                                            },
+                                            icon: Center(
+                                              child: Icon(
+                                                Icons
+                                                    .arrow_back_ios_new_outlined,
 
-                                        color: appProvider.isDark
-                                            ? AppColor.darkModeMainTextColor
-                                            : AppColor.lightModeMainColor,
+                                                color: appProvider.isDark
+                                                    ? AppColor
+                                                          .darkModeMainTextColor
+                                                    : AppColor
+                                                          .lightModeMainColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          ),
 
-                          // Spacer(flex: 3),
+                            // Spacer(flex: 3),
 
-                          // Spacer(flex: 7),
-                        ],
-                      ),
-                      SizedBox(height: 48),
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Login to your account',
-                              style: myTheme.textTheme.titleLarge!.copyWith(
-                                color: appProvider.isDark
-                                    ? AppColor.darkModeMainTextColor
-                                    : AppColor.lightModeMainColor,
-                              ),
-                            ),
-                            SizedBox(height: 26),
-                            TextFormField(
-                              controller: emailController,
-                              validator: (value) {
-                                bool emailValid = false;
-                                if (value != null) {
-                                  emailValid = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-                                  ).hasMatch(value);
-                                }
-                                if (value == null || value.trim().isEmpty) {
-                                  return ' Enter your email';
-                                } else if (!emailValid) {
-                                  return 'Unvalid email';
-                                }
-                                return null;
-                              },
-                              onTapUpOutside: (event) {
-                                FocusManager.instance.primaryFocus?.unfocus();
-                              },
-
-                              decoration: InputDecoration(
-                                hintText: "Enter your email",
-                                hintStyle: TextStyle(
+                            // Spacer(flex: 7),
+                          ],
+                        ),
+                        SizedBox(height: 48),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                local.login_title,
+                                style: myTheme.textTheme.titleLarge!.copyWith(
                                   color: appProvider.isDark
                                       ? AppColor.darkModeMainTextColor
-                                      : AppColor.lightModeSecTextColor,
+                                      : AppColor.lightModeMainColor,
                                 ),
-                                prefixIcon: Icon(Iconsax.sms),
+                              ),
+                              SizedBox(height: 26),
+                              TextFormField(
+                                controller: emailController,
+                                validator: (value) {
+                                  bool emailValid = false;
+                                  if (value != null) {
+                                    emailValid = RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                                    ).hasMatch(value);
+                                  }
+                                  if (value == null || value.trim().isEmpty) {
+                                    return local.enter_email_error;
+                                  } else if (!emailValid) {
+                                    return local.invalid_email_error;
+                                  }
+                                  return null;
+                                },
+                                onTapUpOutside: (event) {
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                },
 
-                                prefixIconColor: appProvider.isDark
-                                    ? AppColor.darkModeMainTextColor
-                                    : AppColor.darkModeDisableColor,
+                                decoration: InputDecoration(
+                                  hintText: local.email_hint,
+                                  hintStyle: TextStyle(
+                                    color: appProvider.isDark
+                                        ? AppColor.darkModeMainTextColor
+                                        : AppColor.lightModeSecTextColor,
+                                  ),
+                                  prefixIcon: Icon(Iconsax.sms),
+
+                                  prefixIconColor: appProvider.isDark
+                                      ? AppColor.darkModeMainTextColor
+                                      : AppColor.darkModeDisableColor,
+                                ),
+
+                                textDirection: TextDirection.ltr,
                               ),
 
-                              textDirection: TextDirection.ltr,
-                            ),
+                              SizedBox(height: 24),
 
-                            SizedBox(height: 24),
+                              ValueListenableBuilder(
+                                valueListenable: isShow,
+                                builder: (context, value, child) {
+                                  return TextFormField(
+                                    controller: passwordController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return local.enter_password_error;
+                                      }
+                                      // if (value.length < 6) {
+                                      //   return 'enther pawwsord moer than 6 characters';
+                                      // }
+                                      // bool validPasswod = RegExp(
+                                      //   r'^(?=.*[^a-zA-Z0-9]).+$',
+                                      // ).hasMatch(value);
 
-                            ValueListenableBuilder(
-                              valueListenable: isShow,
-                              builder: (context, value, child) {
-                                return TextFormField(
-                                  controller: passwordController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Enter password';
-                                    }
-                                    // if (value.length < 6) {
-                                    //   return 'enther pawwsord moer than 6 characters';
-                                    // }
-                                    // bool validPasswod = RegExp(
-                                    //   r'^(?=.*[^a-zA-Z0-9]).+$',
-                                    // ).hasMatch(value);
+                                      // if (!validPasswod) {
+                                      //   return 'should contain at least one Special character';
+                                      // }
+                                      return null;
+                                    },
+                                    obscureText: value,
+                                    obscuringCharacter: "*",
 
-                                    // if (!validPasswod) {
-                                    //   return 'should contain at least one Special character';
-                                    // }
-                                    return null;
-                                  },
-                                  obscureText: value,
-                                  obscuringCharacter: "*",
+                                    onTapUpOutside: (event) {
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                    },
 
-                                  onTapUpOutside: (event) {
-                                    FocusManager.instance.primaryFocus
-                                        ?.unfocus();
-                                  },
-
-                                  decoration: InputDecoration(
-                                    hintText: "Password",
-                                    hintStyle: TextStyle(
-                                      color: appProvider.isDark
-                                          ? AppColor.darkModeMainTextColor
-                                          : AppColor.lightModeSecTextColor,
-                                    ),
-                                    prefixIcon: Icon(Iconsax.lock),
-
-                                    prefixIconColor: appProvider.isDark
-                                        ? AppColor.darkModeMainTextColor
-                                        : AppColor.darkModeDisableColor,
-
-                                    suffixIcon: GestureDetector(
-                                      onTap: () {
-                                        isShow.value = !isShow.value;
-                                      },
-                                      child: Icon(
-                                        value ? Iconsax.eye_slash : Iconsax.eye,
+                                    decoration: InputDecoration(
+                                      hintText: local.password_hint,
+                                      hintStyle: TextStyle(
+                                        color: appProvider.isDark
+                                            ? AppColor.darkModeMainTextColor
+                                            : AppColor.lightModeSecTextColor,
                                       ),
+                                      prefixIcon: Icon(Iconsax.lock),
+
+                                      prefixIconColor: appProvider.isDark
+                                          ? AppColor.darkModeMainTextColor
+                                          : AppColor.darkModeDisableColor,
+
+                                      suffixIcon: GestureDetector(
+                                        onTap: () {
+                                          isShow.value = !isShow.value;
+                                        },
+                                        child: Icon(
+                                          value
+                                              ? Iconsax.eye_slash
+                                              : Iconsax.eye,
+                                        ),
+                                      ),
+
+                                      suffixIconColor: appProvider.isDark
+                                          ? AppColor.darkModeMainTextColor
+                                          : AppColor.darkModeDisableColor,
                                     ),
 
-                                    suffixIconColor: appProvider.isDark
-                                        ? AppColor.darkModeMainTextColor
-                                        : AppColor.darkModeDisableColor,
-                                  ),
-
-                                  textDirection: TextDirection.ltr,
-                                );
-                              },
-                            ),
-                            SizedBox(height: 8),
-                            Align(
-                              alignment: AlignmentDirectional.bottomEnd,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    AppIds.forgetScreen,
+                                    textDirection: TextDirection.ltr,
                                   );
                                 },
-                                child: Text(
-                                  'Forget Password?',
+                              ),
+                              SizedBox(height: 8),
+                              Align(
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushReplacementNamed(
+                                      context,
+                                      AppIds.forgetScreen,
+                                    );
+                                  },
+                                  child: Text(
+                                    local.forget_password,
 
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: appProvider.isDark
-                                        ? AppColor.darkModeMainColor
-                                        : AppColor.lightModeMainColor,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: appProvider.isDark
-                                        ? AppColor.darkModeMainColor
-                                        : AppColor.lightModeMainColor,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: appProvider.isDark
+                                          ? AppColor.darkModeMainColor
+                                          : AppColor.lightModeMainColor,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: appProvider.isDark
+                                          ? AppColor.darkModeMainColor
+                                          : AppColor.lightModeMainColor,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 48),
+                              SizedBox(height: 48),
 
-                            Center(
-                              child: ElevatedButton(
-                                onPressed: provider.isLoading
-                                    ? null
-                                    : () async {
-                                        if (_formKey.currentState!.validate()) {
-                                          await provider.loginAccount(
-                                            context,
-                                            email: emailController.text,
-                                            password: passwordController.text,
-                                          );
-                                          // provider.errorHappen
-                                          //     ? ScaffoldMessenger.of(
-                                          //         context,
-                                          //       ).showSnackBar(
-                                          //         SnackBar(
-                                          //           backgroundColor:
-                                          //               appProvider.isDark
-                                          //               ? Colors.redAccent
-                                          //               : Colors.redAccent,
-                                          //           content: Row(
-                                          //             children: [
-                                          //               Icon(
-                                          //                 Icons
-                                          //                     .error_outline_outlined,
-                                          //                 color: Colors.white,
-                                          //               ),
-                                          //               SizedBox(width: 8),
-                                          //               Text(
-                                          //                 maxLines: 2,
-                                          //                 overflow: TextOverflow
-                                          //                     .ellipsis,
+                              Center(
+                                child: ElevatedButton(
+                                  onPressed: provider.isLoading
+                                      ? null
+                                      : () async {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            await provider.loginAccount(
+                                              context,
+                                              email: emailController.text,
+                                              password: passwordController.text,
+                                            );
+                                            // provider.errorHappen
+                                            //     ? ScaffoldMessenger.of(
+                                            //         context,
+                                            //       ).showSnackBar(
+                                            //         SnackBar(
+                                            //           backgroundColor:
+                                            //               appProvider.isDark
+                                            //               ? Colors.redAccent
+                                            //               : Colors.redAccent,
+                                            //           content: Row(
+                                            //             children: [
+                                            //               Icon(
+                                            //                 Icons
+                                            //                     .error_outline_outlined,
+                                            //                 color: Colors.white,
+                                            //               ),
+                                            //               SizedBox(width: 8),
+                                            //               Text(
+                                            //                 maxLines: 2,
+                                            //                 overflow: TextOverflow
+                                            //                     .ellipsis,
 
-                                          //                 'Invalid input!',
-                                          //               ),
-                                          //             ],
-                                          //           ),
-                                          //           duration: Duration(
-                                          //             seconds: 1,
-                                          //           ),
-                                          //         ),
-                                          //       )
-                                          //     : ScaffoldMessenger.of(
-                                          //         context,
-                                          //       ).showSnackBar(
-                                          //         SnackBar(
-                                          //           backgroundColor:
-                                          //               appProvider.isDark
-                                          //               ? AppColor
-                                          //                     .darkModeMainColor
-                                          //               : AppColor
-                                          //                     .lightModeMainColor,
-                                          //           content: Row(
-                                          //             children: [
-                                          //               Icon(
-                                          //                 Icons.check_circle,
-                                          //                 color: Colors.white,
-                                          //               ),
-                                          //               SizedBox(width: 8),
-                                          //               Text(
-                                          //                 'Signup successful!',
-                                          //               ),
-                                          //             ],
-                                          //           ),
-                                          //           duration: Duration(
-                                          //             seconds: 1,
-                                          //           ),
-                                          //         ),
-                                          //       );
-                                        }
-                                      },
-                                child: Center(
-                                  child: provider.isLoading
-                                      ? SizedBox(
-                                          width: 24,
-                                          height: 24,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 2,
+                                            //                 'Invalid input!',
+                                            //               ),
+                                            //             ],
+                                            //           ),
+                                            //           duration: Duration(
+                                            //             seconds: 1,
+                                            //           ),
+                                            //         ),
+                                            //       )
+                                            //     : ScaffoldMessenger.of(
+                                            //         context,
+                                            //       ).showSnackBar(
+                                            //         SnackBar(
+                                            //           backgroundColor:
+                                            //               appProvider.isDark
+                                            //               ? AppColor
+                                            //                     .darkModeMainColor
+                                            //               : AppColor
+                                            //                     .lightModeMainColor,
+                                            //           content: Row(
+                                            //             children: [
+                                            //               Icon(
+                                            //                 Icons.check_circle,
+                                            //                 color: Colors.white,
+                                            //               ),
+                                            //               SizedBox(width: 8),
+                                            //               Text(
+                                            //                 'Signup successful!',
+                                            //               ),
+                                            //             ],
+                                            //           ),
+                                            //           duration: Duration(
+                                            //             seconds: 1,
+                                            //           ),
+                                            //         ),
+                                            //       );
+                                          }
+                                        },
+                                  child: Center(
+                                    child: provider.isLoading
+                                        ? SizedBox(
+                                            width: 24,
+                                            height: 24,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2,
+                                              color: appProvider.isDark
+                                                  ? AppColor.darkModeMainColor
+                                                  : AppColor.lightModeMainColor,
+                                            ),
+                                          )
+                                        : Text(local.login_button),
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(height: 48),
+                              Center(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushReplacementNamed(
+                                      context,
+                                      AppIds.registerScreen,
+                                    );
+                                  },
+                                  child: Text.rich(
+                                    TextSpan(
+                                      text: '${local.dont_have_account}   ',
+                                      style: myTheme.textTheme.titleMedium!
+                                          .copyWith(
+                                            color: appProvider.isDark
+                                                ? AppColor.darkModeMainTextColor
+                                                : AppColor
+                                                      .lightModeMainTextColor,
+                                          ),
+                                      children: [
+                                        TextSpan(
+                                          text: local.signup,
+                                          style: myTheme.textTheme.titleMedium!
+                                              .copyWith(
+                                                color: appProvider.isDark
+                                                    ? AppColor.darkModeMainColor
+                                                    : AppColor
+                                                          .lightModeMainColor,
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                decorationThickness: 2,
+                                                decorationColor:
+                                                    appProvider.isDark
+                                                    ? AppColor.darkModeMainColor
+                                                    : AppColor
+                                                          .lightModeMainColor,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 32),
+
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Divider(
+                                      indent: 10,
+                                      thickness: 2,
+                                      color: appProvider.isDark
+                                          ? AppColor.lightModeMainColor
+                                          : AppColor.darkModeDisableColor,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                    ),
+                                    child: Text(
+                                      local.or,
+                                      style: myTheme.textTheme.titleMedium!
+                                          .copyWith(
                                             color: appProvider.isDark
                                                 ? AppColor.darkModeMainColor
                                                 : AppColor.lightModeMainColor,
                                           ),
-                                        )
-                                      : Text('Login'),
-                                ),
-                              ),
-                            ),
-
-                            SizedBox(height: 48),
-                            Center(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    AppIds.registerScreen,
-                                  );
-                                },
-                                child: Text.rich(
-                                  TextSpan(
-                                    text: 'Don’t have an account ? ',
-                                    style: myTheme.textTheme.titleMedium!
-                                        .copyWith(
-                                          color: appProvider.isDark
-                                              ? AppColor.darkModeMainTextColor
-                                              : AppColor.lightModeMainTextColor,
-                                        ),
-                                    children: [
-                                      TextSpan(
-                                        text: 'Signup',
-                                        style: myTheme.textTheme.titleMedium!
-                                            .copyWith(
-                                              color: appProvider.isDark
-                                                  ? AppColor.darkModeMainColor
-                                                  : AppColor.lightModeMainColor,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                              decorationThickness: 2,
-                                              decorationColor:
-                                                  appProvider.isDark
-                                                  ? AppColor.darkModeMainColor
-                                                  : AppColor.lightModeMainColor,
-                                            ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
+                                  Expanded(
+                                    child: Divider(
+                                      thickness: 2,
+                                      endIndent: 10,
+
+                                      color: appProvider.isDark
+                                          ? AppColor.lightModeMainColor
+                                          : AppColor.darkModeDisableColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 40),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: ElevatedButton(
+                            style: myTheme.elevatedButtonTheme.style!.copyWith(
+                              side: WidgetStatePropertyAll(
+                                BorderSide(
+                                  color: appProvider.isDark
+                                      ? AppColor.lightModeMainColor
+                                      : AppColor.darkModeSecTextColor,
                                 ),
                               ),
+                              backgroundColor: WidgetStateProperty.all(
+                                appProvider.isDark
+                                    ? AppColor.darkModeMainColor.withValues(
+                                        alpha: 0.1,
+                                      )
+                                    : AppColor.darkModeMainTextColor,
+                              ),
+                              foregroundColor: WidgetStateProperty.all(
+                                appProvider.isDark
+                                    ? null
+                                    : AppColor.lightModeMainColor,
+                              ),
                             ),
-                            SizedBox(height: 32),
-
-                            Row(
+                            onPressed: provider.isLoadingGoogle
+                                ? null
+                                : () async {
+                                    bool success = await provider
+                                        .getSingInGoogle(context);
+                                    if (success) {
+                                      Navigator.pushReplacementNamed(
+                                        context,
+                                        AppIds.layoutScreen,
+                                      );
+                                    }
+                                  },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Expanded(
-                                  child: Divider(
-                                    indent: 10,
-                                    thickness: 2,
-                                    color: appProvider.isDark
-                                        ? AppColor.lightModeMainColor
-                                        : AppColor.darkModeDisableColor,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                  ),
-                                  child: Text(
-                                    'Or',
-                                    style: myTheme.textTheme.titleMedium!
-                                        .copyWith(
+                                provider.isLoadingGoogle
+                                    ? SizedBox()
+                                    : Image.asset('assets/images/google.png'),
+                                SizedBox(width: 20),
+                                provider.isLoadingGoogle
+                                    ? Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
                                           color: appProvider.isDark
                                               ? AppColor.darkModeMainColor
                                               : AppColor.lightModeMainColor,
                                         ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Divider(
-                                    thickness: 2,
-                                    endIndent: 10,
-
-                                    color: appProvider.isDark
-                                        ? AppColor.lightModeMainColor
-                                        : AppColor.darkModeDisableColor,
-                                  ),
-                                ),
+                                      )
+                                    : Text(local.login_with_google),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 40),
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: ElevatedButton(
-                          style: myTheme.elevatedButtonTheme.style!.copyWith(
-                            side: WidgetStatePropertyAll(
-                              BorderSide(
-                                color: appProvider.isDark
-                                    ? AppColor.lightModeMainColor
-                                    : AppColor.darkModeSecTextColor,
-                              ),
-                            ),
-                            backgroundColor: WidgetStateProperty.all(
-                              appProvider.isDark
-                                  ? AppColor.darkModeMainColor.withValues(
-                                      alpha: 0.1,
-                                    )
-                                  : AppColor.darkModeMainTextColor,
-                            ),
-                            foregroundColor: WidgetStateProperty.all(
-                              appProvider.isDark
-                                  ? null
-                                  : AppColor.lightModeMainColor,
-                            ),
-                          ),
-                          onPressed: provider.isLoadingGoogle
-                              ? null
-                              : () async {
-                                  bool success = await provider.getSingInGoogle(
-                                    context,
-                                  );
-                                  if (success) {
-                                    Navigator.pushReplacementNamed(
-                                      context,
-                                      AppIds.layoutScreen,
-                                    );
-                                  }
-                                },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              provider.isLoadingGoogle
-                                  ? SizedBox(
-                                      width: 24,
-                                      height: 24,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        color: appProvider.isDark
-                                            ? AppColor.darkModeMainColor
-                                            : AppColor.lightModeMainColor,
-                                      ),
-                                    )
-                                  : Image.asset('assets/images/google.png'),
-                              SizedBox(width: 20),
-                              Text('Login with Google'),
-                            ],
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
               ),

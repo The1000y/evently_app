@@ -101,19 +101,19 @@ abstract class AppLocalizations {
   /// No description provided for @app_name.
   ///
   /// In en, this message translates to:
-  /// **'EVENTLY'**
+  /// **'Evently'**
   String get app_name;
 
   /// No description provided for @onboarding_title.
   ///
   /// In en, this message translates to:
-  /// **'Personalize Your Experience'**
+  /// **'Customize Your Experience'**
   String get onboarding_title;
 
   /// No description provided for @onboarding_desc.
   ///
   /// In en, this message translates to:
-  /// **'Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.'**
+  /// **'Choose your preferred language and theme to start with a comfortable experience tailored just for you.'**
   String get onboarding_desc;
 
   /// No description provided for @language_label.
@@ -161,37 +161,37 @@ abstract class AppLocalizations {
   /// No description provided for @title_boarding_one.
   ///
   /// In en, this message translates to:
-  /// **'Find Events That Inspire You'**
+  /// **'Discover Events That Inspire You'**
   String get title_boarding_one;
 
   /// No description provided for @title_boarding_two.
   ///
   /// In en, this message translates to:
-  /// **'Effortless Event Planning'**
+  /// **'Organize Events Easily'**
   String get title_boarding_two;
 
   /// No description provided for @title_boarding_three.
   ///
   /// In en, this message translates to:
-  /// **'Connect with Friends & Share Moments'**
+  /// **'Connect with Friends and Share Moments'**
   String get title_boarding_three;
 
   /// No description provided for @body_boarding_one.
   ///
   /// In en, this message translates to:
-  /// **'Dive into a world of events crafted to fit your unique interests. Whether you\'re into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.'**
+  /// **'Enjoy a world of events tailored to your unique interests. Whether you love live music, art workshops, professional meetups, or discovering new experiences, you’ll always find something exciting. Our curated recommendations help you explore, connect, and make the most of every opportunity around you.'**
   String get body_boarding_one;
 
   /// No description provided for @body_boarding_two.
   ///
   /// In en, this message translates to:
-  /// **'Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.'**
+  /// **'Take the stress out of event planning with our all-in-one tools. From sending invitations and managing RSVPs to scheduling reminders and organizing details, we handle everything for you. Plan effortlessly and focus on what matters most — creating unforgettable experiences for you and your guests.'**
   String get body_boarding_two;
 
   /// No description provided for @body_boarding_three.
   ///
   /// In en, this message translates to:
-  /// **'Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.'**
+  /// **'Make every event more meaningful by sharing it with others. Our platform lets you invite friends, keep everyone updated, and celebrate moments together. Capture memories and share the excitement with your network to relive the best experiences.'**
   String get body_boarding_three;
 
   /// No description provided for @boarding_button.
@@ -203,7 +203,7 @@ abstract class AppLocalizations {
   /// No description provided for @boarding_button_finish.
   ///
   /// In en, this message translates to:
-  /// **'Get started'**
+  /// **'Get Started'**
   String get boarding_button_finish;
 
   /// No description provided for @skip_button.
@@ -233,7 +233,7 @@ abstract class AppLocalizations {
   /// No description provided for @favorite.
   ///
   /// In en, this message translates to:
-  /// **'Favorite'**
+  /// **'Favorites'**
   String get favorite;
 
   /// No description provided for @profile.
@@ -251,7 +251,7 @@ abstract class AppLocalizations {
   /// No description provided for @tab_Book.
   ///
   /// In en, this message translates to:
-  /// **'Book'**
+  /// **'Books'**
   String get tab_Book;
 
   /// No description provided for @tab_Birthday.
@@ -277,6 +277,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sport'**
   String get tab_Sport;
+
+  /// No description provided for @login_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to your account'**
+  String get login_title;
+
+  /// No description provided for @email_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get email_hint;
+
+  /// No description provided for @password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password_hint;
+
+  /// No description provided for @forget_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password?'**
+  String get forget_password;
+
+  /// No description provided for @login_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login_button;
+
+  /// No description provided for @dont_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Don’t have an account?'**
+  String get dont_have_account;
+
+  /// No description provided for @signup.
+  ///
+  /// In en, this message translates to:
+  /// **'Signup'**
+  String get signup;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get or;
+
+  /// No description provided for @login_with_google.
+  ///
+  /// In en, this message translates to:
+  /// **'Login with Google'**
+  String get login_with_google;
+
+  /// No description provided for @create_account_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get create_account_title;
+
+  /// No description provided for @name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get name_hint;
+
+  /// No description provided for @confirm_password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirm_password_hint;
+
+  /// No description provided for @signup_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signup_button;
+
+  /// No description provided for @already_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get already_have_account;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @enter_email_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enter_email_error;
+
+  /// No description provided for @invalid_email_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get invalid_email_error;
+
+  /// No description provided for @enter_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter password'**
+  String get enter_password_error;
+
+  /// No description provided for @password_short_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get password_short_error;
+
+  /// No description provided for @confirm_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirm_password_error;
+
+  /// No description provided for @password_not_match_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get password_not_match_error;
+
+  /// No description provided for @wrong_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong password'**
+  String get wrong_password_error;
+
+  /// No description provided for @email_already_in_use_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Email already in use'**
+  String get email_already_in_use_error;
+
+  /// No description provided for @user_not_found_error.
+  ///
+  /// In en, this message translates to:
+  /// **'User not found'**
+  String get user_not_found_error;
+
+  /// No description provided for @network_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your internet connection'**
+  String get network_error;
+
+  /// No description provided for @unknown_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get unknown_error;
+
+  /// No description provided for @enter_name_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get enter_name_error;
+
+  /// No description provided for @name_short_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is too short'**
+  String get name_short_error;
 }
 
 class _AppLocalizationsDelegate

@@ -3,6 +3,7 @@ import 'package:evently/core/route/get_helper.dart';
 import 'package:evently/core/route/route_gen.dart';
 import 'package:evently/core/themes/app_theme.dart';
 import 'package:evently/l10n/app_localizations.dart';
+import 'package:evently/modules/layout/manager/image_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -28,7 +29,13 @@ void main() async {
   provider.loadTheme();
   provider.loadOnBoarding();
   runApp(
-    ChangeNotifierProvider<AppProvider>.value(value: provider, child: MyApp()),
+    ChangeNotifierProvider<ImageProviderManager>(
+      create: (context) => ImageProviderManager(),
+      child: ChangeNotifierProvider<AppProvider>.value(
+        value: provider,
+        child: MyApp(),
+      ),
+    ),
   );
 }
 

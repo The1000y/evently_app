@@ -16,6 +16,7 @@ class RouteGen {
     print(settings.name);
 
     final bool onBoarding = GetHelper.prefs.getBool("onBoarding") ?? false;
+    final user = FirebaseAuth.instance.currentUser;
     switch (settings.name) {
       case AppIds.splashScreen:
         return PageRouteBuilder(
@@ -26,19 +27,19 @@ class RouteGen {
 
       case AppIds.onBoardingScreen:
         return onBoarding
-            ? PageRouteBuilder(
-                transitionDuration: Duration(milliseconds: 500),
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return LoginScreen();
-                },
-              )
-            : FirebaseAuth.instance.currentUser != null
-            ? PageRouteBuilder(
-                transitionDuration: Duration(milliseconds: 500),
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return LayoutScreen();
-                },
-              )
+            ? user != null
+                  ? PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 500),
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return LayoutScreen();
+                      },
+                    )
+                  : PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 500),
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return LoginScreen();
+                      },
+                    )
             : PageRouteBuilder(
                 transitionDuration: Duration(milliseconds: 500),
                 pageBuilder: (context, animation, secondaryAnimation) {

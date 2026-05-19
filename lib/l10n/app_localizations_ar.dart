@@ -101,4 +101,88 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tab_Sport => 'الرياضة';
+
+  @override
+  String get login_title => 'تسجيل الدخول إلى حسابك';
+
+  @override
+  String get email_hint => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get password_hint => 'كلمة المرور';
+
+  @override
+  String get forget_password => 'هل نسيت كلمة المرور؟';
+
+  @override
+  String get login_button => 'تسجيل الدخول';
+
+  @override
+  String get dont_have_account => 'ليس لديك حساب؟';
+
+  @override
+  String get signup => 'إنشاء حساب';
+
+  @override
+  String get or => 'أو';
+
+  @override
+  String get login_with_google => 'تسجيل الدخول باستخدام جوجل';
+
+  @override
+  String get create_account_title => 'إنشاء حسابك';
+
+  @override
+  String get name_hint => 'أدخل اسمك';
+
+  @override
+  String get confirm_password_hint => 'تأكيد كلمة المرور';
+
+  @override
+  String get signup_button => 'إنشاء حساب';
+
+  @override
+  String get already_have_account => 'لديك حساب بالفعل؟';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get enter_email_error => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get invalid_email_error => 'أدخل بريدًا إلكترونيًا صحيحًا';
+
+  @override
+  String get enter_password_error => 'أدخل كلمة المرور';
+
+  @override
+  String get password_short_error => 'يجب أن تكون كلمة المرور 6 أحرف على الأقل';
+
+  @override
+  String get confirm_password_error => 'أكد كلمة المرور';
+
+  @override
+  String get password_not_match_error => 'كلمتا المرور غير متطابقتين';
+
+  @override
+  String get wrong_password_error => 'كلمة المرور غير صحيحة';
+
+  @override
+  String get email_already_in_use_error => 'البريد الإلكتروني مستخدم بالفعل';
+
+  @override
+  String get user_not_found_error => 'المستخدم غير موجود';
+
+  @override
+  String get network_error => 'تحقق من اتصال الإنترنت';
+
+  @override
+  String get unknown_error => 'حدث خطأ غير متوقع';
+
+  @override
+  String get enter_name_error => 'أدخل اسمك';
+
+  @override
+  String get name_short_error => 'الاسم قصير جدًا';
 }
