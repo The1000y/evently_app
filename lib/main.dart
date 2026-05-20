@@ -28,11 +28,12 @@ void main() async {
   provider.loadLanguage();
   provider.loadTheme();
   provider.loadOnBoarding();
+
   runApp(
-    ChangeNotifierProvider<ImageProviderManager>(
-      create: (context) => ImageProviderManager(),
-      child: ChangeNotifierProvider<AppProvider>.value(
-        value: provider,
+    ChangeNotifierProvider<AppProvider>.value(
+      value: provider,
+      child: ChangeNotifierProvider<ImageProviderManager>(
+        create: (context) => ImageProviderManager()..loadImage(),
         child: MyApp(),
       ),
     ),

@@ -37,7 +37,11 @@ class ProfileSceen extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadiusGeometry.circular(360),
                           child: provider.imge != null
-                              ? Image.file(provider.imge!, fit: BoxFit.cover)
+                              ? Image.file(
+                                  provider.imge!,
+                                  fit: BoxFit.cover,
+                                  key: ValueKey(provider.imgeIndex),
+                                )
                               : Image.asset('assets/images/picture.png'),
                         ),
                       ),
@@ -45,7 +49,7 @@ class ProfileSceen extends StatelessWidget {
                         left: 40,
                         top: 85,
                         child: InkWell(
-                          onTap: () => provider.imagePickerProcess(context),
+                          onTap: () => provider.getImagePicker(context),
                           child: ClipRRect(
                             borderRadius: BorderRadiusGeometry.circular(360),
                             child: Container(
