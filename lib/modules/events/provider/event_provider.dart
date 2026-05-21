@@ -13,6 +13,13 @@ class EventProvider extends ChangeNotifier {
   TimeOfDay? selectedTime;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TabController? controllerTab;
+
+  //   void controllerTabBar (int length ,TickerProvider vsync){
+
+  //   controllerTab = TabController(length: length, vsync: vsync , initialIndex: tabIndex);
+
+  // }
 
   void onChangeTab(int index) {
     tabIndex = index;
@@ -54,6 +61,29 @@ class EventProvider extends ChangeNotifier {
       Loading.hideLoading(context);
       CherryToast.error(title: Text(e.toString())).show(context);
     }
+  }
+
+  void initWithEvent(EventModel event, BuildContext context) {
+    titleController.text = event.title;
+    descriptionController.text = event.description;
+    selectedDate = DateTime.parse(event.date);
+    final timeParts = event.time.split(':');
+    final hour = int.parse(timeParts[0]);
+    final minute = int.parse(timeParts[1].split(' ')[0]);
+    final period = event.time.toLowerCase().contains('pm');
+    selectedTime = TimeOfDay(
+      hour: period && hour != 12
+          ? hour + 12
+          : (!period && hour == 12 ? 0 : hour),
+      minute: minute,
+    );
+    int index = AppConstance.categories(
+      context,
+    ).indexWhere((element) => element.id == event.categoryId);
+
+    tabIndex = index;
+
+    notifyListeners();
   }
 
   void clear() {

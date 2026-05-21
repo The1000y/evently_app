@@ -1,4 +1,5 @@
 import 'package:evently/core/constance/app_constance.dart';
+import 'package:evently/core/ids/app_ids.dart';
 import 'package:evently/core/provider/app_provider.dart';
 import 'package:evently/core/themes/app_color.dart';
 import 'package:evently/l10n/app_localizations.dart';
@@ -211,80 +212,63 @@ class HomeScreen extends StatelessWidget {
                               .firstWhere((element) {
                                 return element.id == item.categoryId;
                               });
-                          return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24),
-                              border: Border.all(
-                                color: AppColor.darkModeDisableColor.withValues(
-                                  alpha: 0.2,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                AppIds.detailsEventSceen,
+                                arguments: {
+                                  'event': item,
+                                  'category': itemCategory,
+                                },
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 4),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(24),
+                                border: Border.all(
+                                  color: AppColor.darkModeDisableColor
+                                      .withValues(alpha: 0.2),
+                                  width: 2,
                                 ),
-                                width: 2,
-                              ),
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(itemCategory.image),
-                              ),
-                            ),
-                            width: double.infinity,
-                            height: 220,
-                            child: Column(
-                              // mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Align(
-                                  alignment: appProvider.language == 'en'
-                                      ? Alignment.centerRight
-                                      : Alignment.centerRight,
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.2,
-                                    alignment: Alignment.centerRight,
-                                    margin: EdgeInsets.all(8),
-                                    padding: EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 1,
-                                        color: AppColor.darkModeDisableColor
-                                            .withValues(alpha: 0.5),
-                                      ),
-                                      color: myTheme.primaryColor.withValues(
-                                        alpha: 0.1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        DateFormat(
-                                          "d MMM",
-                                        ).format(DateTime.parse(item.date)),
-                                        style: myTheme.textTheme.titleSmall!
-                                            .copyWith(
-                                              color: appProvider.isDark
-                                                  ? AppColor.darkModeMainColor
-                                                  : AppColor
-                                                        .darkModeStrokeColor,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(itemCategory.image),
                                 ),
-                                Spacer(),
-                                Container(
-                                  margin: EdgeInsets.all(8),
-                                  padding: EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      234,
-                                      231,
-                                      231,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
+                              ),
+                              width: double.infinity,
+                              height: 220,
+                              child: Column(
+                                // mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Align(
+                                    alignment: appProvider.language == 'en'
+                                        ? Alignment.centerRight
+                                        : Alignment.centerRight,
+                                    child: Container(
+                                      width:
+                                          MediaQuery.of(context).size.width *
+                                          0.2,
+                                      alignment: Alignment.centerRight,
+                                      margin: EdgeInsets.all(8),
+                                      padding: EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1,
+                                          color: AppColor.darkModeDisableColor
+                                              .withValues(alpha: 0.5),
+                                        ),
+                                        color: myTheme.primaryColor.withValues(
+                                          alpha: 0.1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Center(
                                         child: Text(
-                                          item.title,
+                                          DateFormat(
+                                            "d MMM",
+                                          ).format(DateTime.parse(item.date)),
                                           style: myTheme.textTheme.titleSmall!
                                               .copyWith(
                                                 color: appProvider.isDark
@@ -294,35 +278,66 @@ class HomeScreen extends StatelessWidget {
                                               ),
                                         ),
                                       ),
-                                      SizedBox(width: 8),
-                                      InkWell(
-                                        onTap: () {
-                                          provider.onTapFav(item);
-                                        },
-                                        child: Icon(
-                                          item.isfav
-                                              ? Icons.favorite
-                                              : Icons.favorite_border,
-                                          color: myTheme.primaryColor,
-                                        ),
-                                      ),
-                                      SizedBox(width: 4),
-                                      Text(
-                                        item.userfav == null
-                                            ? "0"
-                                            : item.userfav!.length.toString(),
-                                        style: myTheme.textTheme.titleSmall!
-                                            .copyWith(
-                                              color: appProvider.isDark
-                                                  ? AppColor.darkModeMainColor
-                                                  : AppColor
-                                                        .darkModeStrokeColor,
-                                            ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Spacer(),
+                                  Container(
+                                    margin: EdgeInsets.all(8),
+                                    padding: EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(
+                                        255,
+                                        234,
+                                        231,
+                                        231,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            item.title,
+                                            style: myTheme.textTheme.titleSmall!
+                                                .copyWith(
+                                                  color: appProvider.isDark
+                                                      ? AppColor
+                                                            .darkModeMainColor
+                                                      : AppColor
+                                                            .darkModeStrokeColor,
+                                                ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 8),
+                                        InkWell(
+                                          onTap: () {
+                                            provider.onTapFav(item);
+                                          },
+                                          child: Icon(
+                                            item.isfav
+                                                ? Icons.favorite
+                                                : Icons.favorite_border,
+                                            color: myTheme.primaryColor,
+                                          ),
+                                        ),
+                                        SizedBox(width: 4),
+                                        Text(
+                                          item.userfav == null
+                                              ? "0"
+                                              : item.userfav!.length.toString(),
+                                          style: myTheme.textTheme.titleSmall!
+                                              .copyWith(
+                                                color: appProvider.isDark
+                                                    ? AppColor.darkModeMainColor
+                                                    : AppColor
+                                                          .darkModeStrokeColor,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },

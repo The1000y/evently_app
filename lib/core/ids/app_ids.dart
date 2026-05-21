@@ -7,4 +7,6 @@ class AppIds {
   static const String forgetScreen = 'forget_screen';
   static const String layoutScreen = 'layout_screen';
   static const String addEventSceen = 'add_event';
+  static const String editEventSceen = 'edit_event_Screen';
+  static const String detailsEventSceen = 'details_event_Screen';
 }

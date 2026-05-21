@@ -4,6 +4,8 @@ import 'package:evently/modules/auth/pages/forget_screen.dart';
 import 'package:evently/modules/auth/pages/login.dart';
 import 'package:evently/modules/auth/pages/register.dart';
 import 'package:evently/modules/events/pages/add_event.dart';
+import 'package:evently/modules/events/pages/details_event.dart';
+import 'package:evently/modules/events/pages/edit_event.dart';
 import 'package:evently/modules/layout/pages/layout_screen.dart';
 import 'package:evently/modules/on_boarding/pages/details_on_boarding_screen.dart';
 import 'package:evently/modules/on_boarding/pages/on_boarding_Screen.dart';
@@ -89,6 +91,24 @@ class RouteGen {
           transitionDuration: Duration(milliseconds: 500),
           pageBuilder: (context, animation, secondaryAnimation) {
             return AddEvent();
+          },
+        );
+
+      case AppIds.editEventSceen:
+        return PageRouteBuilder(
+          settings: settings,
+          transitionDuration: Duration(milliseconds: 500),
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return EditEventScreen();
+          },
+        );
+
+      case AppIds.detailsEventSceen:
+        return PageRouteBuilder(
+          settings: settings,
+          transitionDuration: Duration(milliseconds: 500),
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return DetailsEventScreen();
           },
         );
     }
