@@ -278,7 +278,7 @@ class EditEventScreen extends StatelessWidget {
                                 provider.onAddEvent(context);
                               }
                             },
-                            child: Center(child: Text('Add Event')),
+                            child: Center(child: Text('Update Event')),
                           ),
                         ),
                       ],

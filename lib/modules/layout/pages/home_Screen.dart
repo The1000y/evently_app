@@ -216,7 +216,7 @@ class HomeScreen extends StatelessWidget {
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                AppIds.detailsEventSceen,
+                                AppIds.editEventSceen,
                                 arguments: {
                                   'event': item,
                                   'category': itemCategory,
@@ -224,7 +224,7 @@ class HomeScreen extends StatelessWidget {
                               );
                             },
                             child: Container(
-                              margin: EdgeInsets.symmetric(horizontal: 4),
+                              margin: EdgeInsets.symmetric(horizontal: 8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(24),
                                 border: Border.all(

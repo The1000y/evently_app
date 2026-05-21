@@ -9,17 +9,10 @@ import 'package:flutter/material.dart';
 
 class EventProvider extends ChangeNotifier {
   int tabIndex = 0;
-  DateTime? selectedDate = DateTime.now();
+  DateTime? selectedDate;
   TimeOfDay? selectedTime;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  TabController? controllerTab;
-
-  //   void controllerTabBar (int length ,TickerProvider vsync){
-
-  //   controllerTab = TabController(length: length, vsync: vsync , initialIndex: tabIndex);
-
-  // }
 
   void onChangeTab(int index) {
     tabIndex = index;
@@ -51,7 +44,7 @@ class EventProvider extends ChangeNotifier {
       clear();
       CherryToast.success(
         animationType: AnimationType.fromTop,
-        title: Text("Event Added"),
+        title: Text("Event Added", textAlign: TextAlign.center),
       ).show(context);
       Loading.hideLoading(context);
     } on FirebaseException catch (e) {
@@ -80,6 +73,10 @@ class EventProvider extends ChangeNotifier {
     int index = AppConstance.categories(
       context,
     ).indexWhere((element) => element.id == event.categoryId);
+
+    if (index == -1) {
+      index = 0;
+    }
 
     tabIndex = index;
 
