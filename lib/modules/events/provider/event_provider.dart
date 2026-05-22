@@ -2,10 +2,12 @@ import 'package:cherry_toast/cherry_toast.dart';
 import 'package:cherry_toast/resources/arrays.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently/core/constance/app_constance.dart';
+import 'package:evently/core/ids/app_ids.dart';
 import 'package:evently/core/widgets/loading.dart';
 import 'package:evently/modules/events/model/event_model.dart';
 import 'package:evently/modules/events/services/event_services.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class EventProvider extends ChangeNotifier {
   int tabIndex = 0;
@@ -13,6 +15,8 @@ class EventProvider extends ChangeNotifier {
   TimeOfDay? selectedTime;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+
+  String currentEventId = '';
 
   void onChangeTab(int index) {
     tabIndex = index;
@@ -29,15 +33,71 @@ class EventProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> onDeleteEvent(String eventId, BuildContext context) async {
+    try {
+      Loading.showLoading(context);
+      await EventServices.deleteEvent(eventId);
+      Loading.hideLoading(context);
+
+      CherryToast.success(
+        animationType: AnimationType.fromTop,
+        title: Text("Event Deleted", textAlign: TextAlign.center),
+      ).show(context);
+      Navigator.pop(context);
+
+      notifyListeners();
+    } on Exception catch (e) {
+      Loading.hideLoading(context);
+      CherryToast.error(title: Text(e.toString())).show(context);
+    } catch (e) {
+      Loading.hideLoading(context);
+      CherryToast.error(title: Text(e.toString())).show(context);
+    }
+  }
+
+  Future<void> onUpdateEvent(BuildContext context) async {
+    try {
+      EventModel event = EventModel(
+        categoryId: AppConstance.categories(context)[tabIndex].id,
+        date: selectedDate.toString(),
+        description: descriptionController.text,
+        id: currentEventId,
+        time: selectedTime!.format(context),
+        title: titleController.text,
+      );
+
+      Loading.showLoading(context);
+      await EventServices.updateEvent(event);
+      Loading.hideLoading(context);
+
+      CherryToast.success(
+        animationType: AnimationType.fromTop,
+        title: Text("Event Updated", textAlign: TextAlign.center),
+      ).show(context);
+
+      clear();
+
+      Navigator.pushReplacementNamed(context, AppIds.layoutScreen);
+    } on FirebaseException catch (e) {
+      Loading.hideLoading(context);
+      CherryToast.error(title: Text(e.toString())).show(context);
+    } catch (e) {
+      Loading.hideLoading(context);
+      CherryToast.error(title: Text(e.toString())).show(context);
+    }
+  }
+
   Future<void> onAddEvent(BuildContext context) async {
     try {
       Loading.showLoading(context);
       EventModel event = EventModel(
         categoryId: AppConstance.categories(context)[tabIndex].id,
-        date: selectedDate.toString(),
+        date: selectedDate?.toString() ?? DateTime.now().toString(),
         description: descriptionController.text,
         id: "",
-        time: selectedTime!.format(context),
+        time:
+            selectedTime?.format(context) ??
+            DateFormat("hh:mm a").format(DateTime.now()),
         title: titleController.text,
       );
       await EventServices.addEvent(event);
@@ -58,6 +118,7 @@ class EventProvider extends ChangeNotifier {
 
   void initWithEvent(EventModel event, BuildContext context) {
     titleController.text = event.title;
+    currentEventId = event.id;
     descriptionController.text = event.description;
     selectedDate = DateTime.parse(event.date);
     final timeParts = event.time.split(':');

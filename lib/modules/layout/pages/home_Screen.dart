@@ -216,7 +216,7 @@ class HomeScreen extends StatelessWidget {
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                AppIds.editEventSceen,
+                                AppIds.detailsEventSceen,
                                 arguments: {
                                   'event': item,
                                   'category': itemCategory,

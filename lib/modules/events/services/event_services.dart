@@ -39,6 +39,16 @@ class EventServices {
     return doc.set(event);
   }
 
+  static Future<void> deleteEvent(String eventId) async {
+    var ref = getRef();
+    return await ref.doc(eventId).delete();
+  }
+
+  static Future<void> updateEvent(EventModel event) async {
+    var ref = getRef();
+    return await ref.doc(event.id).update(event.toJson());
+  }
+
   static Future<List<QueryDocumentSnapshot<EventModel>>> getDate(
     int index,
     BuildContext context,
