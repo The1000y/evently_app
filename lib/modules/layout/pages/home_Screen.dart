@@ -8,6 +8,7 @@ import 'package:evently/modules/layout/manager/layout_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -190,11 +191,11 @@ class HomeScreen extends StatelessWidget {
                   } else if (snapshot.data!.docs.isEmpty) {
                     return Center(
                       child: SizedBox(
-                        child: Image.asset(
-                          'assets/images/data_hacking-01.png',
-                          cacheWidth: 400,
-                          cacheHeight: 400,
-                          scale: 1,
+                        // child: Image.asset(
+                        //   'assets/images/data_hacking-01.png',
+                        child: Lottie.asset(
+                          'assets/json_image/Empty State.json',
+                          fit: BoxFit.cover,
                         ),
                       ),
                     );

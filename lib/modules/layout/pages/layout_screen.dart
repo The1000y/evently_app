@@ -18,6 +18,7 @@ class LayoutScreen extends StatelessWidget {
     // var provider = context.read<LayoutProvider>();// لو هنده على فانكشن هتتكريت مره واحده بس
     // var provider2 = Provider.of<LayoutProvider>(context); // لو عاوز الاسكرين تتغير مع كل تغير
     var local = AppLocalizations.of(context)!;
+
     final List<Widget> MyScreen = const [
       HomeScreen(),
       FavoriteScreen(),

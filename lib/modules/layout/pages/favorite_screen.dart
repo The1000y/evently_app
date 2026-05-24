@@ -5,6 +5,7 @@ import 'package:evently/core/themes/app_color.dart';
 import 'package:evently/modules/layout/manager/layout_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -78,11 +79,15 @@ class FavoriteScreen extends StatelessWidget {
                 }
                 if (provider.filteredFavoriteEvents.isEmpty) {
                   return Center(
-                    child: Image.asset(
-                      'assets/images/data_hacking-01.png',
-                      cacheHeight: 400,
-                      cacheWidth: 400,
+                    child: Lottie.asset(
+                      'assets/json_image/Empty box.json',
+                      fit: BoxFit.cover,
                     ),
+                    // child: Image.asset(
+                    //   'assets/images/data_hacking-01.png',
+                    //   cacheHeight: 400,
+                    //   cacheWidth: 400,
+                    // ),
                   );
                 }
 
