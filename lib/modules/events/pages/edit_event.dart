@@ -1,6 +1,8 @@
 import 'package:evently/core/constance/app_constance.dart';
+import 'package:evently/core/provider/app_provider.dart';
 import 'package:evently/core/themes/app_color.dart';
 import 'package:evently/modules/events/model/event_model.dart';
+import 'package:evently/modules/events/pages/details_event.dart';
 import 'package:evently/modules/events/provider/event_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -15,6 +17,8 @@ class EditEventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var dataDetails = ModalRoute.of(context)!.settings.arguments as Map;
+    var appProvider = Provider.of<AppProvider>(context);
+    var theme = Theme.of(context);
     EventModel eventEditScreen = dataDetails['event'];
     // AppCategory categoryEditScreen = dataDetails['category'];
 
@@ -33,8 +37,30 @@ class EditEventScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           centerTitle: true,
-          title: Text('ُEdit Event', style: myTheme.textTheme.titleLarge),
+
+          leadingWidth: MediaQuery.of(context).size.width * 0.3,
+          leading: Row(
+            children: [
+              SizedBox(width: 18),
+              CustomIconAppBar(
+                onTap: () => Navigator.pop(context),
+                appProvider: appProvider,
+                color1: AppColor.darkModeMainTextColor,
+                color2: AppColor.lightModeMainColor,
+                icon: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: appProvider.isDark
+                      ? AppColor.darkModeMainTextColor
+                      : AppColor.lightModeMainColor,
+                ),
+                // icon: Icons.arrow_back_ios_new_rounded,
+              ),
+            ],
+          ),
+
+          title: Text('Edit Event', style: theme.textTheme.titleLarge),
         ),
+
         body: Consumer<EventProvider>(
           builder: (context, provider, child) {
             return Padding(

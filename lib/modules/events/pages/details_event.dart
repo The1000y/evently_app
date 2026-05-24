@@ -36,40 +36,47 @@ class DetailsEventScreen extends StatelessWidget {
               actions: [
                 Row(
                   children: [
-                    CustomIconAppBar(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          AppIds.editEventSceen,
-                          arguments: {'event': event, 'category': category},
-                        );
-                      },
-                      appProvider: appProvider,
-                      color1: AppColor.darkModeMainColor,
-                      color2: AppColor.lightModeMainColor,
-                      icon: Icon(
-                        size: 30,
-                        // weight: 10,
-                        Icons.edit_outlined,
-                        color: appProvider.isDark
-                            ? AppColor.darkModeMainColor
-                            : AppColor.lightModeMainColor,
-                      ),
-                    ),
-                    CustomIconAppBar(
-                      onTap: () {
-                        provider.onDeleteEvent(event.id, context);
-                      },
-                      appProvider: appProvider,
-                      color1: AppColor.darkModeMainColor,
-                      color2: AppColor.lightModeMainColor,
-                      icon: Icon(
-                        size: 30,
-                        // weight: 10,
-                        Icons.delete_outlined,
-                        color: AppColor.darkModeRedColor,
-                      ),
-                    ),
+                    provider.currentUserId == event.userId
+                        ? CustomIconAppBar(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                AppIds.editEventSceen,
+                                arguments: {
+                                  'event': event,
+                                  'category': category,
+                                },
+                              );
+                            },
+                            appProvider: appProvider,
+                            color1: AppColor.darkModeMainColor,
+                            color2: AppColor.lightModeMainColor,
+                            icon: Icon(
+                              size: 30,
+                              // weight: 10,
+                              Icons.edit_outlined,
+                              color: appProvider.isDark
+                                  ? AppColor.darkModeMainColor
+                                  : AppColor.lightModeMainColor,
+                            ),
+                          )
+                        : SizedBox(),
+                    provider.currentUserId == event.userId
+                        ? CustomIconAppBar(
+                            onTap: () {
+                              provider.onDeleteEvent(event.id, context);
+                            },
+                            appProvider: appProvider,
+                            color1: AppColor.darkModeMainColor,
+                            color2: AppColor.lightModeMainColor,
+                            icon: Icon(
+                              size: 30,
+                              // weight: 10,
+                              Icons.delete_outlined,
+                              color: AppColor.darkModeRedColor,
+                            ),
+                          )
+                        : SizedBox(),
                     SizedBox(width: 10),
                   ],
                 ),

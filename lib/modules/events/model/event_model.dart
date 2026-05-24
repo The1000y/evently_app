@@ -9,8 +9,10 @@ class EventModel {
   String categoryId;
   List<dynamic>? userfav;
   bool isfav;
+  String userId;
 
   EventModel({
+    required this.userId,
     required this.categoryId,
     required this.date,
     required this.description,
@@ -31,6 +33,7 @@ class EventModel {
       "categoryId": categoryId,
       "userfav": userfav,
       "isfav": isfav,
+      "userId": userId,
     };
   }
 
@@ -39,6 +42,7 @@ class EventModel {
     String? userId = FirebaseAuth.instance.currentUser?.uid;
 
     return EventModel(
+      userId: json["userId"],
       categoryId: json["categoryId"],
       date: json["date"],
       description: json["description"],

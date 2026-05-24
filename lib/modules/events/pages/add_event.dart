@@ -240,6 +240,10 @@ class AddEvent extends StatelessWidget {
                         onPressed: () {
                           if (_fomKey.currentState!.validate()) {
                             provider.onAddEvent(context);
+                            Navigator.pushReplacementNamed(
+                              context,
+                              AppIds.layoutScreen,
+                            );
                           }
                         },
                         child: Center(child: Text('Add Event')),

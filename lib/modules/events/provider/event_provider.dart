@@ -6,6 +6,7 @@ import 'package:evently/core/ids/app_ids.dart';
 import 'package:evently/core/widgets/loading.dart';
 import 'package:evently/modules/events/model/event_model.dart';
 import 'package:evently/modules/events/services/event_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -19,6 +20,8 @@ class EventProvider extends ChangeNotifier {
   TextEditingController searchController = TextEditingController();
 
   String currentEventId = '';
+
+  var currentUserId = FirebaseAuth.instance.currentUser!.uid;
 
   void onChangeTab(int index) {
     tabIndex = index;
@@ -62,6 +65,7 @@ class EventProvider extends ChangeNotifier {
       var oldEvent = await EventServices.getEventById(currentEventId);
 
       EventModel event = EventModel(
+        userId: currentUserId,
         categoryId: AppConstance.categories(context)[tabIndex].id,
         date: selectedDate.toString(),
         description: descriptionController.text,
@@ -102,6 +106,7 @@ class EventProvider extends ChangeNotifier {
     try {
       Loading.showLoading(context);
       EventModel event = EventModel(
+        userId: currentUserId,
         categoryId: AppConstance.categories(context)[tabIndex].id,
         date: selectedDate?.toString() ?? DateTime.now().toString(),
         description: descriptionController.text,

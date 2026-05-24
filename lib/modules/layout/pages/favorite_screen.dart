@@ -47,24 +47,18 @@ class FavoriteScreen extends StatelessWidget {
                 hintText: 'Search for event title',
                 hintStyle: myTheme.textTheme.bodyMedium,
                 suffixIcon: IconButton(
-                  onPressed: () async {
+                  onPressed: () {
                     if (formKey.currentState!.validate()) {
                       if (layoutProvider.searchController.text.isEmpty ||
                           layoutProvider.searchController.text == '') {
-                        await layoutProvider.getAllFavoriteEvents().then((
-                          value,
-                        ) {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                        });
+                        layoutProvider.getAllFavoriteEvents();
+                        FocusManager.instance.primaryFocus?.unfocus();
                         return;
                       } else {
-                        layoutProvider
-                            .getAfterSearch(
-                              layoutProvider.searchController.text,
-                            )
-                            .then((value) {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                            });
+                        layoutProvider.getAfterSearch(
+                          layoutProvider.searchController.text,
+                        );
+                        FocusManager.instance.primaryFocus?.unfocus();
                       }
                     }
                   },
