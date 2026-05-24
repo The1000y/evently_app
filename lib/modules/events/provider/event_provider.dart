@@ -13,8 +13,10 @@ class EventProvider extends ChangeNotifier {
   int tabIndex = 0;
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
+
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   String currentEventId = '';
 
@@ -57,6 +59,8 @@ class EventProvider extends ChangeNotifier {
 
   Future<void> onUpdateEvent(BuildContext context) async {
     try {
+      var oldEvent = await EventServices.getEventById(currentEventId);
+
       EventModel event = EventModel(
         categoryId: AppConstance.categories(context)[tabIndex].id,
         date: selectedDate.toString(),
@@ -64,6 +68,7 @@ class EventProvider extends ChangeNotifier {
         id: currentEventId,
         time: selectedTime!.format(context),
         title: titleController.text,
+        userfav: oldEvent.userfav,
       );
 
       Loading.showLoading(context);
@@ -86,6 +91,12 @@ class EventProvider extends ChangeNotifier {
       CherryToast.error(title: Text(e.toString())).show(context);
     }
   }
+
+  //  Future<void> onSearchEvent(String query) async{
+  //    searchList = await EventServices.searchFavoriteEvent(query);
+
+  //     notifyListeners();
+  //   }
 
   Future<void> onAddEvent(BuildContext context) async {
     try {
