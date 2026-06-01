@@ -1,6 +1,8 @@
 import 'package:evently/core/constance/app_constance.dart';
 import 'package:evently/core/ids/app_ids.dart';
+import 'package:evently/core/provider/app_provider.dart';
 import 'package:evently/core/themes/app_color.dart';
+import 'package:evently/modules/events/pages/details_event.dart';
 import 'package:evently/modules/events/provider/event_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -16,6 +18,7 @@ class AddEvent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var myTheme = Theme.of(context);
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
     List<AppCategory> categoriesList = AppConstance.categories(context);
     return ChangeNotifierProvider<EventProvider>(
       create: (context) => EventProvider(),
@@ -23,7 +26,26 @@ class AddEvent extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           centerTitle: true,
-          title: Text('Add Event'),
+          title: Text('Add Event', style: myTheme.textTheme.titleLarge),
+          leadingWidth: MediaQuery.of(context).size.width * 0.3,
+          leading: Row(
+            children: [
+              SizedBox(width: 16),
+              CustomIconAppBar(
+                color1: myTheme.primaryColor,
+                color2: Colors.white,
+                icon: Icon(
+                  Icons.arrow_back_ios_new_outlined,
+                  color: appProvider.isDark
+                      ? Colors.white
+                      : myTheme.primaryColor,
+                ),
+
+                onTap: () => Navigator.pop(context),
+                appProvider: appProvider,
+              ),
+            ],
+          ),
         ),
         body: Consumer<EventProvider>(
           builder: (context, provider, child) {
@@ -234,6 +256,16 @@ class AddEvent extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppIds.mapScreen);
+                        },
+                        child: Center(child: Text('Google Map')),
+                      ),
+                    ),
+
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16),
                       child: ElevatedButton(

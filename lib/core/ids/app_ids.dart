@@ -9,4 +9,5 @@ class AppIds {
   static const String addEventSceen = 'add_event';
   static const String editEventSceen = 'edit_event_Screen';
   static const String detailsEventSceen = 'details_event_Screen';
+  static const String mapScreen = 'Map_Screen';
 }

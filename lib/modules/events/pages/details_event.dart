@@ -273,36 +273,35 @@ class CustomIconAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: appProvider.isDark
-          ? AppColor.darkModeInputsColor
-          : AppColor.lightModeInputsColor,
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-        side: BorderSide(
-          width: 2,
-          color: appProvider.isDark
-              ? AppColor.darkModeMainColor.withValues(alpha: 0.3)
-              : AppColor.darkModeDisableColor.withValues(alpha: 0.3),
+    return SizedBox(
+      height: 45,
+      width: 45,
+      child: Card(
+        margin: EdgeInsets.zero,
+
+        color: appProvider.isDark
+            ? AppColor.darkModeInputsColor
+            : AppColor.lightModeInputsColor,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          side: BorderSide(
+            width: 2,
+            color: appProvider.isDark
+                ? AppColor.darkModeMainColor.withValues(alpha: 0.3)
+                : AppColor.darkModeDisableColor.withValues(alpha: 0.3),
+          ),
         ),
-      ),
 
-      child: IconButton(
-        iconSize: 25,
-        onPressed: onTap,
-        icon: Center(
-          child: icon,
+        child: Center(
+          child: IconButton(
+            padding: EdgeInsets.zero,
 
-          //   child: Icon(
-          //     icon,
-
-          //     color: appProvider.isDark ? color1 : color2,
-
-          //     // ? AppColor.darkModeMainTextColor
-          //     // : AppColor.lightModeMainColor,
-          //   ),
-          // ),
+            alignment: Alignment.center,
+            iconSize: 24,
+            onPressed: onTap,
+            icon: icon,
+          ),
         ),
       ),
     );
