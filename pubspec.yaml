@@ -42,6 +42,7 @@ dependencies:
   google_sign_in: ^6.3.0
   firebase_auth: ^6.1.4 
   cherry_toast: ^1.13.0
+  location: ^8.0.1
   cloud_firestore: ^6.1.2
   firebase_core: ^4.4.0
   flutter_dotenv: ^6.0.0 
@@ -87,6 +88,7 @@ flutter:
     - assets/logos/
     - assets/json_image/
     - assets/SVG/
+    - assets/map_styles/
     - .env
   #   - images/a_dot_ham.jpeg
 
