@@ -19,7 +19,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'اختر اللغة والمظهر المفضلين لديك للبدء بتجربة مريحة ومصممة خصيصًا لتناسب أسلوبك.';
 
   @override
-  String get language_label => 'اللغة';
+  String get language_label => 'ع';
 
   @override
   String get theme_label => 'المظهر';
@@ -71,9 +71,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get welcome_back => 'مرحبًا بعودتك ✨';
-
-  @override
-  String get language => 'ع';
 
   @override
   String get home => 'الرئيسية';
@@ -185,4 +182,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get name_short_error => 'الاسم قصير جدًا';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get logout => 'تسجيل الخروج';
 }

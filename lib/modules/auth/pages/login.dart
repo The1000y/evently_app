@@ -4,6 +4,8 @@ import 'package:evently/core/themes/app_color.dart';
 import 'package:evently/l10n/app_localizations.dart';
 // import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/modules/auth/manager/auth_provider.dart';
+// import 'package:evently/modules/on_boarding/pages/details_on_boarding_screen.dart';
+// import 'package:evently/modules/on_boarding/pages/on_boarding_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +24,8 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var myTheme = Theme.of(context);
     var local = AppLocalizations.of(context)!;
-    var appProvider = Provider.of<AppProvider>(context);
+    var appProvider = context.watch<AppProvider>();
+    // var appProvider =   Provider.of<AppProvider>(context);
     return ChangeNotifierProvider<AuthProvider>(
       create: (context) => AuthProvider(),
       child: Scaffold(
@@ -52,59 +55,54 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
 
-                            appProvider.onBoardingDone
-                                ? SizedBox()
-                                : Padding(
-                                    padding: const EdgeInsets.only(left: 18),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: SizedBox(
-                                        width: 55,
-                                        child: Card(
-                                          color: appProvider.isDark
-                                              ? AppColor.darkModeInputsColor
-                                              : AppColor.lightModeInputsColor,
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              12.0,
-                                            ),
-                                            side: BorderSide(
-                                              width: 2,
-                                              color: appProvider.isDark
-                                                  ? AppColor.darkModeMainColor
-                                                        .withValues(alpha: 0.3)
-                                                  : AppColor
-                                                        .darkModeDisableColor
-                                                        .withValues(alpha: 0.3),
-                                            ),
-                                          ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(left: 18),
+                            //   child: Align(
+                            //     alignment: Alignment.centerLeft,
+                            //     child: SizedBox(
+                            //       width: 55,
+                            //       child: Card(
+                            //         color: appProvider.isDark
+                            //             ? AppColor.darkModeInputsColor
+                            //             : AppColor.lightModeInputsColor,
+                            //         elevation: 0,
+                            //         shape: RoundedRectangleBorder(
+                            //           borderRadius: BorderRadius.circular(12.0),
+                            //           side: BorderSide(
+                            //             width: 2,
+                            //             color: appProvider.isDark
+                            //                 ? AppColor.darkModeMainColor
+                            //                       .withValues(alpha: 0.3)
+                            //                 : AppColor.darkModeDisableColor
+                            //                       .withValues(alpha: 0.3),
+                            //           ),
+                            //         ),
 
-                                          child: IconButton(
-                                            iconSize: 25,
-                                            onPressed: () {
-                                              Navigator.pushReplacementNamed(
-                                                context,
-                                                AppIds.onBoardingScreen,
-                                              );
-                                            },
-                                            icon: Center(
-                                              child: Icon(
-                                                Icons
-                                                    .arrow_back_ios_new_outlined,
+                            //         child: IconButton(
+                            //           iconSize: 25,
+                            //           onPressed: () {
+                            //             Navigator.push(
+                            //               context,
+                            //               MaterialPageRoute(
+                            //                 builder: (context) =>
+                            //                     OnBoardingScreen(),
+                            //               ),
+                            //             );
+                            //           },
+                            //           icon: Center(
+                            //             child: Icon(
+                            //               Icons.arrow_back_ios_new_outlined,
 
-                                                color: appProvider.isDark
-                                                    ? AppColor
-                                                          .darkModeMainTextColor
-                                                    : AppColor
-                                                          .lightModeMainColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                            //               color: appProvider.isDark
+                            //                   ? AppColor.darkModeMainTextColor
+                            //                   : AppColor.lightModeMainColor,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
 
                             // Spacer(flex: 3),
 
@@ -160,7 +158,9 @@ class LoginScreen extends StatelessWidget {
                                       : AppColor.darkModeDisableColor,
                                 ),
 
-                                textDirection: TextDirection.ltr,
+                                textDirection: appProvider.language == 'en'
+                                    ? TextDirection.ltr
+                                    : TextDirection.rtl,
                               ),
 
                               SizedBox(height: 24),
@@ -223,7 +223,9 @@ class LoginScreen extends StatelessWidget {
                                           : AppColor.darkModeDisableColor,
                                     ),
 
-                                    textDirection: TextDirection.ltr,
+                                    textDirection: appProvider.language == 'en'
+                                        ? TextDirection.ltr
+                                        : TextDirection.rtl,
                                   );
                                 },
                               ),

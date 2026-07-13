@@ -2,6 +2,7 @@ import 'package:evently/core/ids/app_ids.dart';
 import 'package:evently/core/provider/app_provider.dart';
 import 'package:evently/core/themes/app_color.dart';
 import 'package:evently/core/widgets/change_selected_widget.dart';
+import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/modules/layout/manager/image_provider.dart';
 import 'package:evently/modules/layout/manager/layout_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +19,7 @@ class ProfileSceen extends StatelessWidget {
     var currentUser = FirebaseAuth.instance.currentUser;
     var appProvider = Provider.of<AppProvider>(context);
     var myTheme = Theme.of(context);
+    var local = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Padding(
@@ -93,7 +95,7 @@ class ProfileSceen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'Dark mode',
+                          local.dark_mode,
                           style: myTheme.textTheme.titleMedium,
                         ),
                       ),
@@ -137,7 +139,7 @@ class ProfileSceen extends StatelessWidget {
                       },
 
                       child: Text(
-                        'English',
+                        local.lang_english,
                         style: myTheme.textTheme.bodySmall!.copyWith(
                           color: AppColor.darkModeMainTextColor,
                         ),
@@ -148,7 +150,7 @@ class ProfileSceen extends StatelessWidget {
                         appProvider.changeLanguage(SelectedType.button2);
                       },
                       child: Text(
-                        'Arabic',
+                        local.lang_arabic,
                         style: myTheme.textTheme.bodySmall!.copyWith(
                           color: AppColor.darkModeMainTextColor,
                         ),
@@ -178,7 +180,7 @@ class ProfileSceen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Language',
+                            local.language,
                             style: myTheme.textTheme.titleMedium,
                           ),
                         ),
@@ -226,7 +228,7 @@ class ProfileSceen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                'Logout',
+                                local.logout,
                                 style: myTheme.textTheme.titleMedium,
                               ),
                             ),

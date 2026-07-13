@@ -19,7 +19,7 @@
   "boarding_button_finish": "Get Started",
   "skip_button": "Skip",
   "welcome_back": "Welcome Back ✨",
-  "language": "EN",
+  "language_label": "EN",
   "home": "Home",
   "favorite": "Favorites",
   "profile": "Profile",
@@ -56,5 +56,7 @@
   "network_error": "Check your internet connection",
   "unknown_error": "Something went wrong",
   "enter_name_error": "Enter your name",
-  "name_short_error": "Name is too short"
+  "name_short_error": "Name is too short",
+  "language": "Language",
+  "logout": "Logout"
 }

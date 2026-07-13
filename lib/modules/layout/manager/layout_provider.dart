@@ -25,6 +25,8 @@ class LayoutProvider extends ChangeNotifier {
 
   Future<void> onTapFav(EventModel event) async {
     await EventServices.favToggle(event);
+    allFavoriteEvents.removeWhere((e) => e.data().id == event.id);
+    filteredFavoriteEvents.removeWhere((e) => e.data().id == event.id);
     notifyListeners();
   }
 

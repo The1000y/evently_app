@@ -19,7 +19,7 @@
   "boarding_button_finish": "ابدأ الآن",
   "skip_button": "تخطي",
   "welcome_back": "مرحبًا بعودتك ✨",
-  "language": "ع",
+  "language_label": "ع",
   "home": "الرئيسية",
   "favorite": "المفضلة",
   "profile": "الملف الشخصي",
@@ -56,7 +56,7 @@
   "network_error": "تحقق من اتصال الإنترنت",
   "unknown_error": "حدث خطأ غير متوقع",
   "enter_name_error": "أدخل اسمك",
-  "name_short_error": "الاسم قصير جدًا"
- 
-
+  "name_short_error": "الاسم قصير جدًا",
+  "language": "اللغة",
+  "logout": "تسجيل الخروج"
 }

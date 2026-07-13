@@ -19,7 +19,6 @@ class MappSceen extends StatelessWidget {
       create: (context) {
         final provider = GoogleMapProvider();
         provider.initMapStyle(mode);
-
         return provider;
       },
 

@@ -26,73 +26,75 @@ class FavoriteScreen extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Form(
         key: formKey,
-        child: Column(
-          children: [
-            SizedBox(height: 16),
-            TextFormField(
-              controller: layoutProvider.searchController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-              style: myTheme.textTheme.bodyMedium,
-              onTapOutside: (event) {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              onChanged: (value) => layoutProvider.getAfterSearch(
-                layoutProvider.searchController.text,
-              ),
-              decoration: InputDecoration(
-                hintText: 'Search for event title',
-                hintStyle: myTheme.textTheme.bodyMedium,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      if (layoutProvider.searchController.text.isEmpty ||
-                          layoutProvider.searchController.text == '') {
-                        layoutProvider.getAllFavoriteEvents();
-                        FocusManager.instance.primaryFocus?.unfocus();
-                        return;
-                      } else {
-                        layoutProvider.getAfterSearch(
-                          layoutProvider.searchController.text,
-                        );
-                        FocusManager.instance.primaryFocus?.unfocus();
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 16),
+              TextFormField(
+                controller: layoutProvider.searchController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                style: myTheme.textTheme.bodyMedium,
+                onTapOutside: (event) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                onChanged: (value) => layoutProvider.getAfterSearch(
+                  layoutProvider.searchController.text,
+                ),
+                decoration: InputDecoration(
+                  hintText: 'Search for event title',
+                  hintStyle: myTheme.textTheme.bodyMedium,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        if (layoutProvider.searchController.text.isEmpty ||
+                            layoutProvider.searchController.text == '') {
+                          layoutProvider.getAllFavoriteEvents();
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          return;
+                        } else {
+                          layoutProvider.getAfterSearch(
+                            layoutProvider.searchController.text,
+                          );
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        }
                       }
-                    }
-                  },
-                  icon: Icon(Icons.search),
-                  color: myTheme.primaryColor,
+                    },
+                    icon: Icon(Icons.search),
+                    color: myTheme.primaryColor,
+                  ),
                 ),
               ),
-            ),
 
-            SizedBox(height: 16),
-            Consumer<LayoutProvider>(
-              builder: (context, provider, child) {
-                var data = provider.filteredFavoriteEvents;
+              SizedBox(height: 16),
+              Consumer<LayoutProvider>(
+                builder: (context, provider, child) {
+                  var data = provider.filteredFavoriteEvents;
 
-                if (provider.isLoadingFavorite) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                if (provider.filteredFavoriteEvents.isEmpty) {
-                  return Center(
-                    child: Lottie.asset(
-                      'assets/json_image/Empty box.json',
-                      fit: BoxFit.cover,
-                    ),
-                    // child: Image.asset(
-                    //   'assets/images/data_hacking-01.png',
-                    //   cacheHeight: 400,
-                    //   cacheWidth: 400,
-                    // ),
-                  );
-                }
+                  if (provider.isLoadingFavorite) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (provider.filteredFavoriteEvents.isEmpty) {
+                    return Center(
+                      child: Lottie.asset(
+                        'assets/json_image/Empty box.json',
+                        fit: BoxFit.cover,
+                      ),
+                      // child: Image.asset(
+                      //   'assets/images/data_hacking-01.png',
+                      //   cacheHeight: 400,
+                      //   cacheWidth: 400,
+                      // ),
+                    );
+                  }
 
-                return Expanded(
-                  child: ListView.separated(
+                  return ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       var item = data[index].data();
                       var itemCategory = AppConstance.categories(
@@ -188,8 +190,8 @@ class FavoriteScreen extends StatelessWidget {
                                     ),
                                     SizedBox(width: 8),
                                     InkWell(
-                                      onTap: () {
-                                        provider.onTapFav(item);
+                                      onTap: () async {
+                                        await provider.onTapFav(item);
                                       },
                                       child: Icon(
                                         item.isfav
@@ -222,11 +224,11 @@ class FavoriteScreen extends StatelessWidget {
                       return SizedBox(height: 8);
                     },
                     itemCount: data.length,
-                  ),
-                );
-              },
-            ),
-          ],
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

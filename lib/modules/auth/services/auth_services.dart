@@ -44,7 +44,7 @@ class AuthServices {
     } on FirebaseAuthException catch (e) {
       throw e.message ?? "";
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -52,16 +52,16 @@ class AuthServices {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Future<UserCredential?> signInWithGoogle() async {
-    GoogleSignInAccount? _signInAccount = await _googleSignIn.signIn();
-    if (_signInAccount == null) return null;
+    GoogleSignInAccount? signInAccount = await _googleSignIn.signIn();
+    if (signInAccount == null) return null;
 
-    GoogleSignInAuthentication _authAccount =
-        await _signInAccount.authentication;
-    OAuthCredential _accountCredential = GoogleAuthProvider.credential(
-      accessToken: _authAccount.accessToken,
-      idToken: _authAccount.idToken,
+    GoogleSignInAuthentication authAccount =
+        await signInAccount.authentication;
+    OAuthCredential accountCredential = GoogleAuthProvider.credential(
+      accessToken: authAccount.accessToken,
+      idToken: authAccount.idToken,
     );
 
-    return await _auth.signInWithCredential(_accountCredential);
+    return await _auth.signInWithCredential(accountCredential);
   }
 }

@@ -19,7 +19,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Choose your preferred language and theme to start with a comfortable experience tailored just for you.';
 
   @override
-  String get language_label => 'Language';
+  String get language_label => 'EN';
 
   @override
   String get theme_label => 'Theme';
@@ -71,9 +71,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcome_back => 'Welcome Back ✨';
-
-  @override
-  String get language => 'EN';
 
   @override
   String get home => 'Home';
@@ -185,4 +182,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get name_short_error => 'Name is too short';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get logout => 'Logout';
 }

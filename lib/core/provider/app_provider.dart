@@ -15,9 +15,18 @@ class AppProvider extends ChangeNotifier {
 
   bool onBoardingDone = false;
 
-  loadOnBoarding() {
-    onBoardingDone = GetHelper.prefs.getBool("onBoarding") ?? false;
-    notifyListeners();
+  // shared prefrences 4 functions
+  Future<void> saveLanguage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("language", language);
+  }
+
+  Future<void> saveTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+      "theme",
+      themeMode == ThemeMode.light ? "light" : "dark",
+    );
   }
 
   Future<void> loadLanguage() async {
@@ -34,22 +43,6 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> changeLanguage(SelectedType selected) async {
-    languageType = selected;
-    if (selected == SelectedType.button1) {
-      language = 'en';
-    } else {
-      language = 'ar';
-    }
-    await saveLanguage();
-    notifyListeners();
-  }
-
-  Future<void> saveLanguage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString("language", language);
-  }
-
   void loadTheme() {
     String? saveTheme = GetHelper.prefs.getString("theme") ?? "light";
 
@@ -60,6 +53,17 @@ class AppProvider extends ChangeNotifier {
       themeMode = ThemeMode.dark;
       themeType = SelectedType.button2;
     }
+    notifyListeners();
+  }
+
+  Future<void> changeLanguage(SelectedType selected) async {
+    languageType = selected;
+    if (selected == SelectedType.button1) {
+      language = 'en';
+    } else {
+      language = 'ar';
+    }
+    await saveLanguage();
     notifyListeners();
   }
 
@@ -74,11 +78,8 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> saveTheme() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-      "theme",
-      themeMode == ThemeMode.light ? "light" : "dark",
-    );
+  loadOnBoarding() {
+    onBoardingDone = GetHelper.prefs.getBool("onBoarding") ?? false;
+    notifyListeners();
   }
 }

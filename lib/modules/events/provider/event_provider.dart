@@ -1,6 +1,5 @@
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:cherry_toast/resources/arrays.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently/core/constance/app_constance.dart';
 import 'package:evently/core/ids/app_ids.dart';
 import 'package:evently/core/widgets/loading.dart';

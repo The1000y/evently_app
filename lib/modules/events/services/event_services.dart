@@ -97,19 +97,19 @@ class EventServices {
 
     var ref = getRef();
     if (event.isfav) {
-      ref.doc(event.id).update({
+     await ref.doc(event.id).update({
         "userfav": FieldValue.arrayRemove([
           FirebaseAuth.instance.currentUser!.uid,
         ]),
       });
-      ref.doc(event.id).update({"isfav": false});
+     await ref.doc(event.id).update({"isfav": false});
     } else {
-      ref.doc(event.id).update({
+     await ref.doc(event.id).update({
         "userfav": FieldValue.arrayUnion([
           FirebaseAuth.instance.currentUser!.uid,
         ]),
       });
-      ref.doc(event.id).update({"isfav": true});
+    await  ref.doc(event.id).update({"isfav": true});
     }
     // await ref.doc(event.id).update(event.toJson());
   }

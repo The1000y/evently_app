@@ -12,10 +12,11 @@ class GoogleMapProvider extends ChangeNotifier {
 
   Set<Marker> myMarkers = {};
   LocationData? lcationData;
+  bool isFirstTimeCameraZoom = true;
 
   CameraPosition cameraPosition = CameraPosition(
+    zoom: 1,
     target: LatLng(29.959879639851458, 32.55155278985297),
-    zoom: 15,
   );
 
   void initMapStyle(String mode) async {
@@ -65,24 +66,39 @@ class GoogleMapProvider extends ChangeNotifier {
     return true;
   }
 
-  void getLocationDate() async {
-    BitmapDescriptor myLocation = await drawCustomMarker();
+  Future<void> getLocationDate() async {
     location.changeSettings(distanceFilter: 2);
-    location.onLocationChanged.listen((locationDate) {
-      controller?.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLng(locationDate.latitude!, locationDate.longitude!),
-            zoom: 15,
+    location.onLocationChanged.listen((locationDate) async {
+      if (isFirstTimeCameraZoom) {
+        controller!.animateCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(
+              zoom: 15,
+              target: LatLng(locationDate.latitude!, locationDate.longitude!),
+            ),
           ),
-        ),
-      );
+        );
+        isFirstTimeCameraZoom = false;
+        notifyListeners();
+      } else {
+        controller!.animateCamera(
+          CameraUpdate.newLatLng(
+            LatLng(locationDate.latitude!, locationDate.longitude!),
+          ),
+        );
+        notifyListeners();
+      }
+      BitmapDescriptor myLocation = await drawCustomMarker();
+
       var marker = Marker(
         icon: myLocation,
         markerId: MarkerId("1"),
         position: LatLng(locationDate.latitude!, locationDate.longitude!),
       );
 
+      myMarkers.removeWhere((element) {
+        return element.markerId == MarkerId("1");
+      });
       myMarkers.add(marker);
       notifyListeners();
     });

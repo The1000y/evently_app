@@ -119,7 +119,7 @@ abstract class AppLocalizations {
   /// No description provided for @language_label.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
+  /// **'EN'**
   String get language_label;
 
   /// No description provided for @theme_label.
@@ -217,12 +217,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome Back ✨'**
   String get welcome_back;
-
-  /// No description provided for @language.
-  ///
-  /// In en, this message translates to:
-  /// **'EN'**
-  String get language;
 
   /// No description provided for @home.
   ///
@@ -445,6 +439,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Name is too short'**
   String get name_short_error;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
 }
 
 class _AppLocalizationsDelegate
